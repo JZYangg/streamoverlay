@@ -104,7 +104,7 @@
             100% { background-position: 200% 50%; }
         }
 
-        /* INTEGRATED VERTICAL NEON CYBER WAVES */
+        /* INTEGRATED ENDLESS VERTICAL NEON CYBER WAVES */
         .sidebar-wave-container {
             position: absolute;
             top: -50px;
@@ -130,25 +130,41 @@
             stroke-width: 4px;
             stroke-linecap: round;
             fill: none;
-            stroke-dasharray: 300 3000;
-            animation: verticalLaserLoop 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            /* Dash array matching path length for smooth sequential flowing loops */
+            stroke-dasharray: 400 2000;
+            animation: verticalLaserLoop 4.5s linear infinite;
         }
 
-        .laser-1 {
+        /* Left-Sided Blue/Green Wave Tracks */
+        .laser-1a {
             stroke: #00ffd5;
             filter: drop-shadow(0px 0px 8px #00ffd5) drop-shadow(0px 0px 15px #00ff66);
         }
-
-        .laser-2 {
-            stroke: #ff0077;
-            filter: drop-shadow(0px 0px 8px #ff0077) drop-shadow(0px 0px 15px #9900ff);
-            animation-delay: 1.8s;
+        .laser-1b {
+            stroke: #00ff66;
+            filter: drop-shadow(0px 0px 8px #00ff66) drop-shadow(0px 0px 15px #00ffd5);
+            animation-delay: -2.25s; /* Perfectly offset by half the duration to loop continuously */
         }
 
+        /* Right-Sided Pink/Purple Wave Tracks */
+        .laser-2a {
+            stroke: #ff0077;
+            filter: drop-shadow(0px 0px 8px #ff0077) drop-shadow(0px 0px 15px #9900ff);
+        }
+        .laser-2b {
+            stroke: #9900ff;
+            filter: drop-shadow(0px 0px 8px #9900ff) drop-shadow(0px 0px 15px #ff0077);
+            animation-delay: -2.25s; /* Keep stream populated with trailing color waves */
+        }
+
+        /* Continuous forward down-scrolling calculation */
         @keyframes verticalLaserLoop {
-            0% { stroke-dashoffset: 3400; }
-            50% { stroke-dashoffset: 0; }
-            100% { stroke-dashoffset: 0; }
+            0% {
+                stroke-dashoffset: 2400;
+            }
+            100% {
+                stroke-dashoffset: 0;
+            }
         }
 
         /* FLOATING MULTI-COLOR PARTICLES SYSTEM */
@@ -253,7 +269,6 @@
         <div class="ipad-screen-placeholder">
             <div class="live-indicator">Live</div>
         </div>
-
     </div>
 
     <div class="sidebar">
@@ -261,10 +276,12 @@
         <div class="sidebar-wave-container">
             <svg class="sidebar-wave-svg" viewBox="0 0 480 1180" preserveAspectRatio="none">
                 <path class="sidebar-base-track" d="M 120,0 Q 360,295 120,590 T 360,1180" />
-                <path class="sidebar-laser laser-1" d="M 120,0 Q 360,295 120,590 T 360,1180" />
+                <path class="sidebar-laser laser-1a" d="M 120,0 Q 360,295 120,590 T 360,1180" />
+                <path class="sidebar-laser laser-1b" d="M 120,0 Q 360,295 120,590 T 360,1180" />
                 
                 <path class="sidebar-base-track" d="M 360,0 Q 120,295 360,590 T 120,1180" />
-                <path class="sidebar-laser laser-2" d="M 360,0 Q 120,295 360,590 T 120,1180" />
+                <path class="sidebar-laser laser-2a" d="M 360,0 Q 120,295 360,590 T 120,1180" />
+                <path class="sidebar-laser laser-2b" d="M 360,0 Q 120,295 360,590 T 120,1180" />
             </svg>
         </div>
 
