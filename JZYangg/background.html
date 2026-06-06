@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stream Background - Full Screen Cyber Aqua</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+            background-color: #000000;
+        }
+
+        /* FULL SCREEN HIGH-VELOCITY GRADIENT CANVAS */
+        .background-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1920px;
+            height: 1080px;
+            z-index: 1;
+            
+            /* Fluid Diagonal Moving Gradient (Black, Aqua, Dark Blue) */
+            background: linear-gradient(-45deg, #000000, #001326, #002b47, #005c7a, #00ffd5, #000000);
+            background-size: 400% 400%;
+            /* Fast 5-second fluid animation loop */
+            animation: gradientLoop 5s ease infinite;
+        }
+
+        /* Cyber Scanline Layer over the entire screen */
+        .background-canvas::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+                        linear-gradient(90deg, rgba(0, 255, 213, 0.01), rgba(0, 0, 255, 0.005), rgba(0, 255, 213, 0.01));
+            z-index: 2;
+            background-size: 100% 4px, 6px 100%;
+            pointer-events: none;
+        }
+
+        @keyframes gradientLoop {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* FLOATING PARTICLES ENGINE (SPREAD ACROSS 1920px WIDTH) */
+        .particles-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1920px;
+            height: 1080px;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .dot {
+            position: absolute;
+            bottom: -20px;
+            background: rgba(0, 255, 213, 0.6);
+            border-radius: 50%;
+            box-shadow: 0 0 12px rgba(0, 255, 213, 0.8);
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% {
+                transform: translateY(-1150px) translateX(80px);
+                opacity: 0;
+            }
+        }
+
+        /* 24 Fast-moving dots distributed evenly across the entire 1920px widescreen width */
+        .d1 { left: 5%; width: 6px; height: 6px; animation-duration: 4s; animation-delay: 0s; }
+        .d2 { left: 12%; width: 4px; height: 4px; animation-duration: 5.5s; animation-delay: 0.7s; background: rgba(0, 92, 122, 0.7); }
+        .d3 { left: 18%; width: 8px; height: 8px; animation-duration: 3.5s; animation-delay: 1.5s; }
+        .d4 { left: 24%; width: 5px; height: 5px; animation-duration: 4.5s; animation-delay: 0.2s; }
+        .d5 { left: 30%; width: 7px; height: 7px; animation-duration: 6s; animation-delay: 2s; }
+        .d6 { left: 35%; width: 4px; height: 4px; animation-duration: 5s; animation-delay: 1s; }
+        .d7 { left: 42%; width: 9px; height: 9px; animation-duration: 3s; animation-delay: 2.7s; }
+        .d8 { left: 47%; width: 5px; height: 5px; animation-duration: 6.5s; animation-delay: 0.5s; }
+        .d9 { left: 53%; width: 6px; height: 6px; animation-duration: 4.2s; animation-delay: 1.2s; }
+        .d10 { left: 58%; width: 4px; height: 4px; animation-duration: 5.2s; animation-delay: 3s; }
+        .d11 { left: 62%; width: 7px; height: 7px; animation-duration: 3.7s; animation-delay: 0.9s; }
+        .d12 { left: 68%; width: 8px; height: 8px; animation-duration: 4.7s; animation-delay: 2.4s; }
+        .d13 { left: 72%; width: 5px; height: 5px; animation-duration: 5.7s; animation-delay: 1.6s; }
+        .d14 { left: 77%; width: 6px; height: 6px; animation-duration: 4s; animation-delay: 3.5s; }
+        .d15 { left: 81%; width: 4px; height: 4px; animation-duration: 5s; animation-delay: 0.1s; }
+        .d16 { left: 85%; width: 7px; height: 7px; animation-duration: 6.2s; animation-delay: 2.5s; }
+        .d17 { left: 89%; width: 5px; height: 5px; animation-duration: 4.5s; animation-delay: 3.1s; }
+        .d18 { left: 94%; width: 6px; height: 6px; animation-duration: 3.5s; animation-delay: 1.8s; }
+        .d19 { left: 98%; width: 8px; height: 8px; animation-duration: 5.5s; animation-delay: 0.4s; }
+        .d20 { left: 15%; width: 5px; height: 5px; animation-duration: 4.2s; animation-delay: 2.1s; }
+        .d21 { left: 28%; width: 6px; height: 6px; animation-duration: 5s; animation-delay: 0.5s; }
+        .d22 { left: 50%; width: 4px; height: 4px; animation-duration: 6.5s; animation-delay: 2.6s; }
+        .d23 { left: 75%; width: 7px; height: 7px; animation-duration: 3.2s; animation-delay: 1.3s; }
+        .d24 { left: 91%; width: 5px; height: 5px; animation-duration: 4.7s; animation-delay: 3.7s; }
+    </style>
+</head>
+<body>
+
+    <div class="background-canvas"></div>
+
+    <div class="particles-container">
+        <div class="dot d1"></div><div class="dot d2"></div><div class="dot d3"></div><div class="dot d4"></div>
+        <div class="dot d5"></div><div class="dot d6"></div><div class="dot d7"></div><div class="dot d8"></div>
+        <div class="dot d9"></div><div class="dot d10"></div><div class="dot d11"></div><div class="dot d12"></div>
+        <div class="dot d13"></div><div class="dot d14"></div><div class="dot d15"></div><div class="dot d16"></div>
+        <div class="dot d17"></div><div class="dot d18"></div><div class="dot d19"></div><div class="dot d20"></div>
+        <div class="dot d21"></div><div class="dot d22"></div><div class="dot d23"></div><div class="dot d24"></div>
+    </div>
+
+</body>
+</html>
