@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stream Background - Cyber Wave Loop</title>
+    <title>Stream Background - Ultimate Cyber Matrix</title>
     <style>
         * {
             margin: 0;
@@ -19,7 +19,7 @@
             background-color: #000000;
         }
 
-        /* FULL SCREEN GRADIENT CANVAS */
+        /* HIGH-VELOCITY MULTI-COLOR NEON GRADIENT CANVAS */
         .background-canvas {
             position: absolute;
             top: 0;
@@ -27,19 +27,24 @@
             width: 1920px;
             height: 1080px;
             z-index: 1;
-            background: linear-gradient(-45deg, #000000, #001326, #002b47, #005c7a, #00ffd5, #000000);
-            background-size: 400% 400%;
+            
+            /* Perfectly blended palette matrix: Black, Aqua, Dark Blue, Red, Pink, Purple, Green */
+            background: linear-gradient(-45deg, 
+                #000000, #001326, #2b0047, #4a0018, 
+                #ff0055, #9900ff, #00ffd5, #00ff66, #000000);
+            background-size: 500% 500%;
+            /* Fast 5-second fluid rhythm loop */
             animation: gradientLoop 5s ease infinite;
         }
 
-        /* Cyber Scanline Layer */
+        /* Cyber Tech Scanline Filter Layer */
         .background-canvas::before {
             content: " ";
             display: block;
             position: absolute;
             top: 0; left: 0; bottom: 0; right: 0;
             background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
-                        linear-gradient(90deg, rgba(0, 255, 213, 0.01), rgba(0, 0, 255, 0.005), rgba(0, 255, 213, 0.01));
+                        linear-gradient(90deg, rgba(0, 255, 213, 0.01), rgba(255, 0, 150, 0.005), rgba(0, 255, 102, 0.01));
             z-index: 2;
             background-size: 100% 4px, 6px 100%;
             pointer-events: none;
@@ -51,69 +56,69 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* CYBER WAVE NEON LINES SYSTEM */
+        /* CYBER WAVE EXTENDED BOUNDS SYSTEM (CLEAN OUT-OF-BOUNDS EXIT) */
         .wave-container {
             position: absolute;
-            left: 0;
-            width: 1920px;
-            height: 80px; /* Gives the wave room to curve */
+            /* Extended past layout edges (1920 + 100) to keep stops and loops completely off-screen */
+            left: -50px;
+            width: 2020px; 
+            height: 90px;
             z-index: 4;
             pointer-events: none;
         }
 
         .wave-top { top: 0; }
-        .wave-bottom { bottom: 0; transform: scaleY(-1); } /* Flips the same wave smoothly for the bottom */
+        .wave-bottom { bottom: 0; transform: scaleY(-1); }
 
-        /* SVG Styling & Advanced Laser Glow Engine */
         .wave-svg {
             width: 100%;
             height: 100%;
         }
 
-        /* The dim underlying structural wave path */
+        /* Dim underlying circuit track */
         .base-track {
-            stroke: rgba(0, 255, 213, 0.15);
+            stroke: rgba(255, 255, 255, 0.08);
             stroke-width: 3px;
             fill: none;
         }
 
-        /* The active laser beam that follows the wave and loops */
+        /* Laser beam tracking path */
         .laser-beam {
-            stroke: #00ffd5;
             stroke-width: 4px;
             stroke-linecap: round;
             fill: none;
-            filter: drop-shadow(0px 0px 8px #00ffd5) drop-shadow(0px 0px 15px #005c7a);
-            
-            /* SVG Dash Magic: 300px long laser beam separated by empty space */
-            stroke-dasharray: 300 2500; 
-            
-            /* Controls how the laser moves along the path */
+            /* Long tail laser calculation (400px beam + 3000px hidden trailing buffer) */
+            stroke-dasharray: 400 3000; 
             animation: waveLaserLoop 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
         }
 
-        /* Laser progression and interval loop */
+        /* Top Line: Neon Aqua shifting into Matrix Green glow */
+        .wave-top .laser-beam {
+            stroke: #00ffd5;
+            filter: drop-shadow(0px 0px 8px #00ffd5) drop-shadow(0px 0px 15px #00ff66);
+        }
+
+        /* Bottom Line: Electric Pink shifting into Cyber Purple glow */
+        .wave-bottom .laser-beam {
+            stroke: #ff0077;
+            filter: drop-shadow(0px 0px 8px #ff0077) drop-shadow(0px 0px 15px #9900ff);
+            animation-delay: 1.5s; /* Kept staggered for alternating loops */
+        }
+
+        /* Advanced keyframe math: forces laser to pass 100% out of view before stopping/resetting */
         @keyframes waveLaserLoop {
             0% {
-                stroke-dashoffset: 2800; /* Starts completely hidden on the left */
+                stroke-dashoffset: 3400; /* Spawns completely out of bounds on the left */
             }
-            50% {
-                stroke-dashoffset: 0; /* Flows smoothly along the curve to the right */
+            45% {
+                stroke-dashoffset: 0; /* Zips beautifully across waves and exits off-screen right */
             }
             100% {
-                stroke-dashoffset: 0; /* Stays off-screen to create a clean interval pause before restarting */
+                stroke-dashoffset: 0; /* Holds completely off-screen for a clean resting interval pause */
             }
         }
 
-        /* Staggered Delay for the bottom neon line loop */
-        .wave-bottom .laser-beam {
-            animation-delay: 1.2s;
-            stroke: #00c8ff; /* Subtle alternate bright blue neon color shift for the bottom laser */
-            filter: drop-shadow(0px 0px 8px #00c8ff) drop-shadow(0px 0px 15px #002b47);
-        }
-
-
-        /* FLOATING PARTICLES CANVAS (SPREAD WIDESCREEN) */
+        /* FLOATING MULTI-COLOR PARTICLES SYSTEM */
         .particles-container {
             position: absolute;
             top: 0;
@@ -127,9 +132,7 @@
         .dot {
             position: absolute;
             bottom: -20px;
-            background: rgba(0, 255, 213, 0.6);
             border-radius: 50%;
-            box-shadow: 0 0 12px rgba(0, 255, 213, 0.8);
             animation: floatUp linear infinite;
         }
 
@@ -140,31 +143,31 @@
             100% { transform: translateY(-1150px) translateX(80px); opacity: 0; }
         }
 
-        /* Fast particles configuration */
-        .d1 { left: 5%; width: 6px; height: 6px; animation-duration: 4s; animation-delay: 0s; }
-        .d2 { left: 12%; width: 4px; height: 4px; animation-duration: 5.5s; animation-delay: 0.7s; background: rgba(0, 92, 122, 0.7); }
-        .d3 { left: 18%; width: 8px; height: 8px; animation-duration: 3.5s; animation-delay: 1.5s; }
-        .d4 { left: 24%; width: 5px; height: 5px; animation-duration: 4.5s; animation-delay: 0.2s; }
-        .d5 { left: 30%; width: 7px; height: 7px; animation-duration: 6s; animation-delay: 2s; }
-        .d6 { left: 35%; width: 4px; height: 4px; animation-duration: 5s; animation-delay: 1s; }
-        .d7 { left: 42%; width: 9px; height: 9px; animation-duration: 3s; animation-delay: 2.7s; }
-        .d8 { left: 47%; width: 5px; height: 5px; animation-duration: 6.5s; animation-delay: 0.5s; }
-        .d9 { left: 53%; width: 6px; height: 6px; animation-duration: 4.2s; animation-delay: 1.2s; }
-        .d10 { left: 58%; width: 4px; height: 4px; animation-duration: 5.2s; animation-delay: 3s; }
-        .d11 { left: 62%; width: 7px; height: 7px; animation-duration: 3.7s; animation-delay: 0.9s; }
-        .d12 { left: 68%; width: 8px; height: 8px; animation-duration: 4.7s; animation-delay: 2.4s; }
-        .d13 { left: 72%; width: 5px; height: 5px; animation-duration: 5.7s; animation-delay: 1.6s; }
-        .d14 { left: 77%; width: 6px; height: 6px; animation-duration: 4s; animation-delay: 3.5s; }
-        .d15 { left: 81%; width: 4px; height: 4px; animation-duration: 5s; animation-delay: 0.1s; }
-        .d16 { left: 85%; width: 7px; height: 7px; animation-duration: 6.2s; animation-delay: 2.5s; }
-        .d17 { left: 89%; width: 5px; height: 5px; animation-duration: 4.5s; animation-delay: 3.1s; }
-        .d18 { left: 94%; width: 6px; height: 6px; animation-duration: 3.5s; animation-delay: 1.8s; }
-        .d19 { left: 98%; width: 8px; height: 8px; animation-duration: 5.5s; animation-delay: 0.4s; }
-        .d20 { left: 15%; width: 5px; height: 5px; animation-duration: 4.2s; animation-delay: 2.1s; }
-        .d21 { left: 28%; width: 6px; height: 6px; animation-duration: 5s; animation-delay: 0.5s; }
-        .d22 { left: 50%; width: 4px; height: 4px; animation-duration: 6.5s; animation-delay: 2.6s; }
-        .d23 { left: 75%; width: 7px; height: 7px; animation-duration: 3.2s; animation-delay: 1.3s; }
-        .d24 { left: 91%; width: 5px; height: 5px; animation-duration: 4.7s; animation-delay: 3.7s; }
+        /* 24 Fast Particles randomized across Aqua, Pink, Purple, and Green */
+        .d1 { left: 5%; width: 6px; height: 6px; animation-duration: 4s; background: #00ffd5; box-shadow: 0 0 10px #00ffd5; }
+        .d2 { left: 12%; width: 4px; height: 4px; animation-duration: 5.5s; animation-delay: 0.7s; background: #ff0077; box-shadow: 0 0 10px #ff0077; }
+        .d3 { left: 18%; width: 8px; height: 8px; animation-duration: 3.5s; animation-delay: 1.5s; background: #9900ff; box-shadow: 0 0 10px #9900ff; }
+        .d4 { left: 24%; width: 5px; height: 5px; animation-duration: 4.5s; animation-delay: 0.2s; background: #00ff66; box-shadow: 0 0 10px #00ff66; }
+        .d5 { left: 30%; width: 7px; height: 7px; animation-duration: 6s; animation-delay: 2s; background: #00ffd5; box-shadow: 0 0 10px #00ffd5; }
+        .d6 { left: 35%; width: 4px; height: 4px; animation-duration: 5s; animation-delay: 1s; background: #ff0077; box-shadow: 0 0 10px #ff0077; }
+        .d7 { left: 42%; width: 9px; height: 9px; animation-duration: 3s; animation-delay: 2.7s; background: #9900ff; box-shadow: 0 0 10px #9900ff; }
+        .d8 { left: 47%; width: 5px; height: 5px; animation-duration: 6.5s; animation-delay: 0.5s; background: #00ff66; box-shadow: 0 0 10px #00ff66; }
+        .d9 { left: 53%; width: 6px; height: 6px; animation-duration: 4.2s; animation-delay: 1.2s; background: #ff0077; box-shadow: 0 0 10px #ff0077; }
+        .d10 { left: 58%; width: 4px; height: 4px; animation-duration: 5.2s; animation-delay: 3s; background: #00ffd5; box-shadow: 0 0 10px #00ffd5; }
+        .d11 { left: 62%; width: 7px; height: 7px; animation-duration: 3.7s; animation-delay: 0.9s; background: #00ff66; box-shadow: 0 0 10px #00ff66; }
+        .d12 { left: 68%; width: 8px; height: 8px; animation-duration: 4.7s; animation-delay: 2.4s; background: #9900ff; box-shadow: 0 0 10px #9900ff; }
+        .d13 { left: 72%; width: 5px; height: 5px; animation-duration: 5.7s; animation-delay: 1.6s; background: #ff0077; box-shadow: 0 0 10px #ff0077; }
+        .d14 { left: 77%; width: 6px; height: 6px; animation-duration: 4s; animation-delay: 3.5s; background: #00ffd5; box-shadow: 0 0 10px #00ffd5; }
+        .d15 { left: 81%; width: 4px; height: 4px; animation-duration: 5s; animation-delay: 0.1s; background: #00ff66; box-shadow: 0 0 10px #00ff66; }
+        .d16 { left: 85%; width: 7px; height: 7px; animation-duration: 6.2s; animation-delay: 2.5s; background: #9900ff; box-shadow: 0 0 10px #9900ff; }
+        .d17 { left: 89%; width: 5px; height: 5px; animation-duration: 4.5s; animation-delay: 3.1s; background: #ff0077; box-shadow: 0 0 10px #ff0077; }
+        .d18 { left: 94%; width: 6px; height: 6px; animation-duration: 3.5s; animation-delay: 1.8s; background: #00ffd5; box-shadow: 0 0 10px #00ffd5; }
+        .d19 { left: 98%; width: 8px; height: 8px; animation-duration: 5.5s; animation-delay: 0.4s; background: #00ff66; box-shadow: 0 0 10px #00ff66; }
+        .d20 { left: 15%; width: 5px; height: 5px; animation-duration: 4.2s; animation-delay: 2.1s; background: #9900ff; box-shadow: 0 0 10px #9900ff; }
+        .d21 { left: 28%; width: 6px; height: 6px; animation-duration: 5s; animation-delay: 0.5s; background: #ff0077; box-shadow: 0 0 10px #ff0077; }
+        .d22 { left: 50%; width: 4px; height: 4px; animation-duration: 6.5s; animation-delay: 2.6s; background: #00ffd5; box-shadow: 0 0 10px #00ffd5; }
+        .d23 { left: 75%; width: 7px; height: 7px; animation-duration: 3.2s; animation-delay: 1.3s; background: #00ff66; box-shadow: 0 0 10px #00ff66; }
+        .d24 { left: 91%; width: 5px; height: 5px; animation-duration: 4.7s; animation-delay: 3.7s; background: #9900ff; box-shadow: 0 0 10px #9900ff; }
     </style>
 </head>
 <body>
@@ -172,16 +175,16 @@
     <div class="background-canvas"></div>
 
     <div class="wave-container wave-top">
-        <svg class="wave-svg" viewBox="0 0 1920 80" preserveAspectRatio="none">
-            <path class="base-track" d="M 0,40 Q 240,10 480,40 T 960,40 T 1440,40 T 1920,40" />
-            <path class="laser-beam" d="M 0,40 Q 240,10 480,40 T 960,40 T 1440,40 T 1920,40" />
+        <svg class="wave-svg" viewBox="0 0 2020 90" preserveAspectRatio="none">
+            <path class="base-track" d="M 0,45 Q 252.5,10 505,45 T 1010,45 T 1515,45 T 2020,45" />
+            <path class="laser-beam" d="M 0,45 Q 252.5,10 505,45 T 1010,45 T 1515,45 T 2020,45" />
         </svg>
     </div>
 
     <div class="wave-container wave-bottom">
-        <svg class="wave-svg" viewBox="0 0 1920 80" preserveAspectRatio="none">
-            <path class="base-track" d="M 0,40 Q 240,10 480,40 T 960,40 T 1440,40 T 1920,40" />
-            <path class="laser-beam" d="M 0,40 Q 240,10 480,40 T 960,40 T 1440,40 T 1920,40" />
+        <svg class="wave-svg" viewBox="0 0 2020 90" preserveAspectRatio="none">
+            <path class="base-track" d="M 0,45 Q 252.5,10 505,45 T 1010,45 T 1515,45 T 2020,45" />
+            <path class="laser-beam" d="M 0,45 Q 252.5,10 505,45 T 1010,45 T 1515,45 T 2020,45" />
         </svg>
     </div>
 
