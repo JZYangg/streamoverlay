@@ -27,13 +27,10 @@
             width: 1920px;
             height: 1080px;
             z-index: 1;
-            
-            /* Enhanced palette array structured for a seamless infinite forward loop */
             background: linear-gradient(270deg, 
                 #000000, #001326, #2b0047, #4a0018, 
                 #ff0055, #9900ff, #00ffd5, #00ff66, #000000);
             background-size: 200% 200%;
-            /* Uses 'linear' instead of 'ease' to keep it moving forward smoothly at a constant pace */
             animation: gradientForwardLoop 10s linear infinite;
         }
 
@@ -50,13 +47,12 @@
             pointer-events: none;
         }
 
-        /* Mathematical progression that forces the colors to only flow forward */
         @keyframes gradientForwardLoop {
             0% { background-position: 0% 50%; }
             100% { background-position: 200% 50%; }
         }
 
-        /* CYBER WAVE EXTENDED BOUNDS SYSTEM */
+        /* RE-ENGINEERED INF-LOOP NEON WAVE CLUSTERS */
         .wave-container {
             position: absolute;
             left: -50px;
@@ -75,7 +71,7 @@
         }
 
         .base-track {
-            stroke: rgba(255, 255, 255, 0.08);
+            stroke: rgba(255, 255, 255, 0.06);
             stroke-width: 3px;
             fill: none;
         }
@@ -84,25 +80,41 @@
             stroke-width: 4px;
             stroke-linecap: round;
             fill: none;
-            stroke-dasharray: 400 3000; 
-            animation: waveLaserLoop 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            /* Balanced dasharray creates multiple segmented pulses moving in order */
+            stroke-dasharray: 600 1800; 
+            animation: waveLaserLoop 6s linear infinite;
         }
 
-        .wave-top .laser-beam {
+        /* Top Bar: Aqua/Green Conveyor Beams */
+        .wave-top .laser-beam-1 {
             stroke: #00ffd5;
             filter: drop-shadow(0px 0px 8px #00ffd5) drop-shadow(0px 0px 15px #00ff66);
         }
-
-        .wave-bottom .laser-beam {
-            stroke: #ff0077;
-            filter: drop-shadow(0px 0px 8px #ff0077) drop-shadow(0px 0px 15px #9900ff);
-            animation-delay: 1.5s;
+        .wave-top .laser-beam-2 {
+            stroke: #00ff66;
+            filter: drop-shadow(0px 0px 8px #00ff66) drop-shadow(0px 0px 15px #00ffd5);
+            animation-delay: -3s; /* Perfectly halfway offset loop to keep stream busy */
         }
 
+        /* Bottom Bar: Pink/Purple Conveyor Beams */
+        .wave-bottom .laser-beam-1 {
+            stroke: #ff0077;
+            filter: drop-shadow(0px 0px 8px #ff0077) drop-shadow(0px 0px 15px #9900ff);
+        }
+        .wave-bottom .laser-beam-2 {
+            stroke: #9900ff;
+            filter: drop-shadow(0px 0px 8px #9900ff) drop-shadow(0px 0px 15px #ff0077);
+            animation-delay: -3s;
+        }
+
+        /* Clean endless forward calculation running over full-width pathing safely */
         @keyframes waveLaserLoop {
-            0% { stroke-dashoffset: 3400; }
-            45% { stroke-dashoffset: 0; }
-            100% { stroke-dashoffset: 0; }
+            0% {
+                stroke-dashoffset: 2400;
+            }
+            100% {
+                stroke-dashoffset: 0;
+            }
         }
 
         /* FLOATING MULTI-COLOR PARTICLES SYSTEM */
@@ -130,7 +142,7 @@
             100% { transform: translateY(-1150px) translateX(80px); opacity: 0; }
         }
 
-        /* 24 Particles with randomized setups */
+        /* 24 Particles Configuration */
         .d1 { left: 5%; width: 6px; height: 6px; animation-duration: 4s; background: #00ffd5; box-shadow: 0 0 10px #00ffd5; }
         .d2 { left: 12%; width: 4px; height: 4px; animation-duration: 5.5s; animation-delay: 0.7s; background: #ff0077; box-shadow: 0 0 10px #ff0077; }
         .d3 { left: 18%; width: 8px; height: 8px; animation-duration: 3.5s; animation-delay: 1.5s; background: #9900ff; box-shadow: 0 0 10px #9900ff; }
@@ -164,14 +176,16 @@
     <div class="wave-container wave-top">
         <svg class="wave-svg" viewBox="0 0 2020 90" preserveAspectRatio="none">
             <path class="base-track" d="M 0,45 Q 252.5,10 505,45 T 1010,45 T 1515,45 T 2020,45" />
-            <path class="laser-beam" d="M 0,45 Q 252.5,10 505,45 T 1010,45 T 1515,45 T 2020,45" />
+            <path class="laser-beam laser-beam-1" d="M 0,45 Q 252.5,10 505,45 T 1010,45 T 1515,45 T 2020,45" />
+            <path class="laser-beam laser-beam-2" d="M 0,45 Q 252.5,10 505,45 T 1010,45 T 1515,45 T 2020,45" />
         </svg>
     </div>
 
     <div class="wave-container wave-bottom">
         <svg class="wave-svg" viewBox="0 0 2020 90" preserveAspectRatio="none">
             <path class="base-track" d="M 0,45 Q 252.5,10 505,45 T 1010,45 T 1515,45 T 2020,45" />
-            <path class="laser-beam" d="M 0,45 Q 252.5,10 505,45 T 1010,45 T 1515,45 T 2020,45" />
+            <path class="laser-beam laser-beam-1" d="M 0,45 Q 252.5,10 505,45 T 1010,45 T 1515,45 T 2020,45" />
+            <path class="laser-beam laser-beam-2" d="M 0,45 Q 252.5,10 505,45 T 1010,45 T 1515,45 T 2020,45" />
         </svg>
     </div>
 
