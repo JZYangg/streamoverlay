@@ -74,37 +74,91 @@
             z-index: 2;
             overflow: hidden;
             
-            /* Enhanced Matrix Gradient Sequence matching the background style */
-            background: linear-gradient(-45deg, 
+            /* EXACT DETAILED GRADIENT MATCH TRACKED TO MOVE FORWARD ONLY */
+            background: linear-gradient(270deg, 
                 #000000, #001326, #2b0047, #4a0018, 
                 #ff0055, #9900ff, #00ffd5, #00ff66, #000000);
-            background-size: 400% 400%;
-            animation: gradientLoop 5s ease infinite;
+            background-size: 200% 200%;
+            animation: gradientForwardLoop 10s linear infinite;
             
             border-left: 4px solid #00ffd5;
             box-shadow: -10px 0px 30px rgba(0, 255, 213, 0.2), -20px 0px 50px rgba(0, 0, 0, 0.8);
         }
 
+        /* Scanlines Layer Overlay for the sidebar */
         .sidebar::before {
             content: " ";
             display: block;
             position: absolute;
             top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%),
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
                         linear-gradient(90deg, rgba(0, 255, 213, 0.02), rgba(255, 0, 150, 0.01), rgba(0, 255, 102, 0.02));
             z-index: 3;
             background-size: 100% 4px, 6px 100%;
             pointer-events: none;
         }
 
-        /* FLOATING MULTI-COLOR PARTICLES SYSTEM (SIDEBAR SCALE) */
+        /* Forward Loop Animation keyframe calculation */
+        @keyframes gradientForwardLoop {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        /* INTEGRATED VERTICAL NEON CYBER WAVES */
+        .sidebar-wave-container {
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 480px;
+            height: 1180px;
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        .sidebar-wave-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .sidebar-base-track {
+            stroke: rgba(255, 255, 255, 0.05);
+            stroke-width: 2px;
+            fill: none;
+        }
+
+        .sidebar-laser {
+            stroke-width: 4px;
+            stroke-linecap: round;
+            fill: none;
+            stroke-dasharray: 300 3000;
+            animation: verticalLaserLoop 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        .laser-1 {
+            stroke: #00ffd5;
+            filter: drop-shadow(0px 0px 8px #00ffd5) drop-shadow(0px 0px 15px #00ff66);
+        }
+
+        .laser-2 {
+            stroke: #ff0077;
+            filter: drop-shadow(0px 0px 8px #ff0077) drop-shadow(0px 0px 15px #9900ff);
+            animation-delay: 1.8s;
+        }
+
+        @keyframes verticalLaserLoop {
+            0% { stroke-dashoffset: 3400; }
+            50% { stroke-dashoffset: 0; }
+            100% { stroke-dashoffset: 0; }
+        }
+
+        /* FLOATING MULTI-COLOR PARTICLES SYSTEM */
         .sidebar-particles {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 4;
+            z-index: 5;
             pointer-events: none;
         }
 
@@ -122,7 +176,6 @@
             100% { transform: translateY(-1150px) translateX(50px); opacity: 0; }
         }
 
-        /* Staggered Sidebar Particles matching the new vibrant colors */
         .sd1 { left: 10%; width: 6px; height: 6px; animation-duration: 4s; background: #00ffd5; box-shadow: 0 0 10px #00ffd5; }
         .sd2 { left: 25%; width: 4px; height: 4px; animation-duration: 5.5s; animation-delay: 0.7s; background: #ff0077; box-shadow: 0 0 10px #ff0077; }
         .sd3 { left: 45%; width: 8px; height: 8px; animation-duration: 3.5s; animation-delay: 1.5s; background: #9900ff; box-shadow: 0 0 10px #9900ff; }
@@ -144,7 +197,7 @@
             border: 1px solid rgba(0, 255, 213, 0.15);
             border-left: 4px solid #00ffd5;
             backdrop-filter: blur(12px);
-            z-index: 5;
+            z-index: 6;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
             animation: panelGlow 2s ease-in-out infinite alternate;
             max-width: 400px;
@@ -201,21 +254,24 @@
             <div class="live-indicator">Live</div>
         </div>
 
-        <div class="panel webcam-container">
-            <div class="placeholder-text">[ Webcam / Chat Overlay ]</div>
-        </div>
-
-        <div class="panel info-container">
-            <h2>Welcome To The Stream</h2>
-            <p>Drop a follow and share the live stream! Thank you for supporting the channel.</p>
-        </div>
     </div>
 
     <div class="sidebar">
+        
+        <div class="sidebar-wave-container">
+            <svg class="sidebar-wave-svg" viewBox="0 0 480 1180" preserveAspectRatio="none">
+                <path class="sidebar-base-track" d="M 120,0 Q 360,295 120,590 T 360,1180" />
+                <path class="sidebar-laser laser-1" d="M 120,0 Q 360,295 120,590 T 360,1180" />
+                
+                <path class="sidebar-base-track" d="M 360,0 Q 120,295 360,590 T 120,1180" />
+                <path class="sidebar-laser laser-2" d="M 360,0 Q 120,295 360,590 T 120,1180" />
+            </svg>
+        </div>
+
         <div class="sidebar-particles">
             <div class="sidebar-dot sd1"></div><div class="sidebar-dot sd2"></div><div class="sidebar-dot sd3"></div><div class="sidebar-dot sd4"></div>
-            <div class="sidebar-dot sd5"></div><div class="sidebar-dot sd6"></div><div class="sidebar-dot sd7"></div><div class="sidebar-dot sd8"></div>
-            <div class="sidebar-dot sd9"></div><div class="sidebar-dot sd10"></div><div class="sidebar-dot sd11"></div><div class="sidebar-dot sd12"></div>
+            <div class="sidebar-dot sd10"></div><div class="sidebar-dot sd6"></div><div class="sidebar-dot sd7"></div><div class="sidebar-dot sd8"></div>
+            <div class="sidebar-dot sd9"></div><div class="sidebar-dot sd5"></div><div class="sidebar-dot sd11"></div><div class="sidebar-dot sd12"></div>
         </div>
     </div>
 
