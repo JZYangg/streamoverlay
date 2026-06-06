@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Standalone Cyber Socials Rotator</title>
+    <style>
+        /* Base Configuration */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background: transparent; /* Makes the background invisible in OBS */
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 450px;  /* Optimized default widget width */
+            height: 100px; /* Optimized default widget height */
+        }
+
+        /* THE CONTAINER BOX */
+        .rotator-container {
+            position: relative;
+            width: 420px;
+            height: 80px;
+            background: rgba(2, 10, 24, 0.85); /* Slick dark background */
+            border: 2px solid #00ffd5; /* Premium Aqua Border */
+            box-shadow: 0 0 20px rgba(0, 255, 213, 0.25), inset 0 0 10px rgba(0, 255, 213, 0.1);
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* BASE STATE FOR ROTATOR CARDS (Hidden by default) */
+        .rotator-item {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: translateX(40px); /* Pushed out to the right */
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+        }
+
+        /* ACTIVE STATE (Triggered dynamically by JavaScript) */
+        .rotator-item.active {
+            opacity: 1;
+            transform: translateX(0); /* Centers perfectly */
+            pointer-events: auto;
+        }
+
+        /* CUSTOM LOGO/ICON STYLING */
+        .rotator-custom-icon {
+            height: 34px; /* Forces all uploaded icons to be uniform */
+            width: auto;  /* Prevents your logo shapes from stretching */
+            object-fit: contain;
+            filter: drop-shadow(0 0 6px rgba(0, 255, 213, 0.7)); /* Custom cyber-glow */
+        }
+
+        /* NEON TYPOGRAPHY STYLING */
+        .rotator-text {
+            color: #ffffff;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px rgba(0, 255, 213, 0.6), 0 0 20px rgba(0, 98, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="rotator-container">
+      
+        <div class="rotator-item">
+            <img src="discord-icon.png" class="rotator-custom-icon" alt="Discord">
+            <span class="rotator-text">dsc.gg/jzyangg</span>
+        </div>
+
+        <div class="rotator-item">
+            <img src="instagram-icon.png" class="rotator-custom-icon" alt="Instagram">
+            <span class="rotator-text">@_jz.yang</span>
+        </div>
+      
+        <div class="rotator-item active">
+            <img src="tiktok-icon.png" class="rotator-custom-icon" alt="TikTok">
+            <span class="rotator-text">@_jzyang</span>
+        </div>
+
+        <div class="rotator-item">
+            <img src="twitch-icon.png" class="rotator-custom-icon" alt="Twitch">
+            <span class="rotator-text">@JZYangg</span>
+        </div>
+
+        <div class="rotator-item">
+            <img src="youtube-icon.png" class="rotator-custom-icon" alt="YouTube">
+            <span class="rotator-text">@jzyangglive</span>
+        </div>
+
+    </div>
+
+    <script>
+        function runRotatorEngine() {
+            const items = document.querySelectorAll('.rotator-item');
+            let activeIndex = 0;
+
+            // Swaps cards every 6 seconds (6000 milliseconds)
+            setInterval(() => {
+                // Remove active styling from old card
+                items[activeIndex].classList.remove('active');
+
+                // Advance track position, loop back to start if at the end
+                activeIndex = (activeIndex + 1) % items.length;
+
+                // Fire active entry animation on new card
+                items[activeIndex].classList.add('active');
+            }, 6000);
+        }
+
+        // Initialize script execution after DOM loading finishes
+        window.onload = runRotatorEngine;
+    </script>
+
+</body>
+</html>
