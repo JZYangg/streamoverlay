@@ -3,158 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Standalone Cyber Socials Rotator</title>
+    <title>Premium Multi-Color Stream Overlay</title>
     <style>
-        /* Base Configuration */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-        
+
         body {
-            background: transparent; /* Makes the background invisible in OBS */
+            background-color: transparent;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            width: 1920px;
+            height: 1080px;
             overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 450px;  /* Optimized default widget width */
-            height: 100px; /* Optimized default widget height */
         }
 
-        /* KEYFRAMES FOR THE CHAMELEON FLUID LOOP OVERLAY BACKGROUND */
-        @keyframes cyberFluidGradient {
+        .overlay-container {
+            width: 1920px;
+            height: 1080px;
+            display: flex;
+            position: relative;
+        }
+
+        /* LEFT SIDE: iPad Gameplay Capture Area (1440x1080 - Perfect 4:3) */
+        .gameplay-area {
+            width: 1440px;
+            height: 1080px;
+            background: transparent;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* RIGHT SIDE: Dynamic 7-Color Sidebar Command Center (480px Wide) */
+        .sidebar {
+            width: 480px;
+            height: 1080px;
+            /* Fully restored palette: Black, Aqua, Dark Blue, Red, Green, Pink, Purple */
+            background: linear-gradient(135deg, #050b14, #002233, #3b0000, #003311, #330022, #1a0033, #00ffd5);
+            background-size: 400% 400%;
+            animation: fluidGradient 24s ease infinite;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            gap: 25px;
+            z-index: 2;
+            overflow: hidden;
+            border-left: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Infinite 7-Color Shifting Fluid Background Loop */
+        @keyframes fluidGradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* THE CONTAINER BOX WITH SAME SHADER GRADIENT */
-        .rotator-container {
-            position: relative;
-            width: 420px;
-            height: 80px;
-            /* Matches exact dark theme palette: black, deep blue, cyber aqua */
-            background: linear-gradient(-45deg, #020a18, #0a1931, #001220, #008299, #00ffd5);
-            background-size: 400% 400%;
-            animation: cyberFluidGradient 12s ease infinite;
-            border: 2px solid #00ffd5; /* Premium Aqua Border */
-            box-shadow: 0 0 20px rgba(0, 255, 213, 0.25), inset 0 0 10px rgba(0, 255, 213, 0.1);
-            border-radius: 14px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* BASE STATE FOR ROTATOR CARDS */
-        .rotator-item {
+        /* ================= FLOATING PARTICLE ENGINE ================= */
+        .particle-container {
             position: absolute;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
+            z-index: 0;
         }
 
-        /* CUSTOM LOGO/ICON STYLING (Bounces Up on Exit / Entry) */
-        .rotator-custom-icon {
-            height: 34px; /* Forces all uploaded icons to be uniform */
-            width: auto;  /* Prevents your logo shapes from stretching */
-            object-fit: contain;
-            filter: drop-shadow(0 0 6px rgba(0, 255, 213, 0.7)); /* Custom cyber-glow */
-            
-            /* Initial Exit/Hidden State: Shifted downward out of frame */
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        .dot {
+            position: absolute;
+            bottom: -20px;
+            border-radius: 50%;
+            opacity: 0.6;
+            filter: blur(1px);
+            animation: floatUp 12s linear infinite;
         }
 
-        /* NEON TYPOGRAPHY STYLING (Clean Fading Transitions) */
-        .rotator-text {
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-1120px) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        /* Randomized Staggering & Harmonized Speeds/Sizes/Positions for 24 Dots */
+        /* Group 1: Aqua (#00ffd5) */
+        .dot-1 { left: 10%; width: 6px; height: 6px; background: #00ffd5; animation-delay: 0s; animation-duration: 14s; box-shadow: 0 0 8px #00ffd5; }
+        .dot-2 { left: 45%; width: 4px; height: 4px; background: #00ffd5; animation-delay: 3s; animation-duration: 11s; }
+        .dot-3 { left: 75%; width: 8px; height: 8px; background: #00ffd5; animation-delay: 6s; animation-duration: 16s; box-shadow: 0 0 10px #00ffd5; }
+        .dot-4 { left: 30%; width: 5px; height: 5px; background: #00ffd5; animation-delay: 9s; animation-duration: 13s; }
+
+        /* Group 2: Deep Neon Blue (#0062ff) */
+        .dot-5 { left: 20%; width: 5px; height: 5px; background: #0062ff; animation-delay: 1.5s; animation-duration: 12s; }
+        .dot-6 { left: 60%; width: 8px; height: 8px; background: #0062ff; animation-delay: 4.5s; animation-duration: 15s; box-shadow: 0 0 10px #0062ff; }
+        .dot-7 { left: 85%; width: 4px; height: 4px; background: #0062ff; animation-delay: 7.5s; animation-duration: 10s; }
+        .dot-8 { left: 40%; width: 6px; height: 6px; background: #0062ff; animation-delay: 10.5s; animation-duration: 13s; }
+
+        /* Group 3: Vibrant Red (#ff0055) */
+        .dot-9 { left: 15%; width: 7px; height: 7px; background: #ff0055; animation-delay: 0.5s; animation-duration: 15s; box-shadow: 0 0 8px #ff0055; }
+        .dot-10 { left: 50%; width: 4px; height: 4px; background: #ff0055; animation-delay: 3.5s; animation-duration: 11s; }
+        .dot-11 { left: 70%; width: 6px; height: 6px; background: #ff0055; animation-delay: 6.5s; animation-duration: 13s; }
+        .dot-12 { left: 90%; width: 8px; height: 8px; background: #ff0055; animation-delay: 9.5s; animation-duration: 17s; box-shadow: 0 0 10px #ff0055; }
+
+        /* Group 4: Matrix Green (#00ff66) */
+        .dot-13 { left: 5%; width: 4px; height: 4px; background: #00ff66; animation-delay: 2s; animation-duration: 10s; }
+        .dot-14 { left: 35%; width: 8px; height: 8px; background: #00ff66; animation-delay: 5s; animation-duration: 16s; box-shadow: 0 0 10px #00ff66; }
+        .dot-15 { left: 65%; width: 5px; height: 5px; background: #00ff66; animation-delay: 8s; animation-duration: 12s; }
+        .dot-16 { left: 80%; width: 6px; height: 6px; background: #00ff66; animation-delay: 11s; animation-duration: 14s; }
+
+        /* Group 5: Hot Pink (#ff00aa) */
+        .dot-17 { left: 25%; width: 6px; height: 6px; background: #ff00aa; animation-delay: 1s; animation-duration: 13s; box-shadow: 0 0 8px #ff00aa; }
+        .dot-18 { left: 55%; width: 4px; height: 4px; background: #ff00aa; animation-delay: 4s; animation-duration: 10s; }
+        .dot-19 { left: 95%; width: 7px; height: 7px; background: #ff00aa; animation-delay: 7s; animation-duration: 15s; box-shadow: 0 0 10px #ff00aa; }
+        .dot-20 { left: 12%; width: 5px; height: 5px; background: #ff00aa; animation-delay: 10s; animation-duration: 12s; }
+
+        /* Group 6: Electric Purple (#b300ff) */
+        .dot-21 { left: 38%; width: 8px; height: 8px; background: #b300ff; animation-delay: 2.5s; animation-duration: 16s; box-shadow: 0 0 10px #b300ff; }
+        .dot-22 { left: 48%; width: 5px; height: 5px; background: #b300ff; animation-delay: 5.5s; animation-duration: 12s; }
+        .dot-23 { left: 83%; width: 6px; height: 6px; background: #b300ff; animation-delay: 8.5s; animation-duration: 14s; }
+        .dot-24 { left: 22%; width: 4px; height: 4px; background: #b300ff; animation-delay: 11.5s; animation-duration: 11s; }
+
+        /* ================= SIDEBAR CONTAINERS ================= */
+        .content-box {
+            position: relative;
+            z-index: 1;
+            background: rgba(5, 11, 20, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             color: #ffffff;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-shadow: 0 0 8px rgba(0, 255, 213, 0.6), 0 0 20px rgba(0, 98, 255, 0.4);
-            
-            /* Initial Exit/Hidden State: Clean absolute zero opacity fade */
-            opacity: 0;
-            transition: opacity 0.6s ease-in-out;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
         }
 
-        /* ACTIVE STATE (Triggered dynamically by JavaScript) */
-        .rotator-item.active {
-            pointer-events: auto;
+        .content-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 16px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
         }
 
-        /* Active Transition Adjustments */
-        .rotator-item.active .rotator-custom-icon {
-            opacity: 1;
-            transform: translateY(0); /* Bounces fluidly up into perfect focus center */
+        /* Top Box: Camera / Chat Feed Placeholders (Scaled Perfectly) */
+        .box-top {
+            flex: 2; /* Takes up proportional height */
         }
 
-        .rotator-item.active .rotator-text {
-            opacity: 1; /* Fades smoothly on entry */
+        /* Bottom Box: Stream Labels / Goals */
+        .box-bottom {
+            flex: 1.2;
+        }
+
+        /* Mini Label Tags inside containers */
+        .box-label {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
         }
     </style>
 </head>
 <body>
 
-    <div class="rotator-container">
-      
-        <div class="rotator-item">
-            <img src="discord-icon.png" class="rotator-custom-icon" alt="Discord">
-            <span class="rotator-text">dsc.gg/jzyangg</span>
-        </div>
+    <div class="overlay-container">
+        
+        <div class="gameplay-area"></div>
 
-        <div class="rotator-item">
-            <img src="instagram-icon.png" class="rotator-custom-icon" alt="Instagram">
-            <span class="rotator-text">@_jz.yang</span>
-        </div>
-      
-        <div class="rotator-item active">
-            <img src="tiktok-icon.png" class="rotator-custom-icon" alt="TikTok">
-            <span class="rotator-text">@_jzyang</span>
-        </div>
+        <div class="sidebar">
+            
+            <div class="particle-container">
+                <div class="dot dot-1"></div>
+                <div class="dot dot-2"></div>
+                <div class="dot dot-3"></div>
+                <div class="dot dot-4"></div>
+                <div class="dot dot-5"></div>
+                <div class="dot dot-6"></div>
+                <div class="dot dot-7"></div>
+                <div class="dot dot-8"></div>
+                <div class="dot dot-9"></div>
+                <div class="dot dot-10"></div>
+                <div class="dot dot-11"></div>
+                <div class="dot dot-12"></div>
+                <div class="dot dot-13"></div>
+                <div class="dot dot-14"></div>
+                <div class="dot dot-15"></div>
+                <div class="dot dot-16"></div>
+                <div class="dot dot-17"></div>
+                <div class="dot dot-18"></div>
+                <div class="dot dot-19"></div>
+                <div class="dot dot-20"></div>
+                <div class="dot dot-21"></div>
+                <div class="dot dot-22"></div>
+                <div class="dot dot-23"></div>
+                <div class="dot dot-24"></div>
+            </div>
 
-        <div class="rotator-item">
-            <img src="twitch-icon.png" class="rotator-custom-icon" alt="Twitch">
-            <span class="rotator-text">@JZYangg</span>
-        </div>
+            <div class="content-box box-top">
+                <span class="box-label">Live Broadcast Overlay</span>
+                Webcam / Chat Layer
+            </div>
 
-        <div class="rotator-item">
-            <img src="youtube-icon.png" class="rotator-custom-icon" alt="YouTube">
-            <span class="rotator-text">@jzyangglive</span>
+            <div class="content-box box-bottom">
+                <span class="box-label">Stream Data Hub</span>
+                Goals & Info Alerts
+            </div>
+
         </div>
 
     </div>
-
-    <script>
-        function runRotatorEngine() {
-            const items = document.querySelectorAll('.rotator-item');
-            // Synchronized to match the initially marked 'active' TikTok index position (slide #3)
-            let activeIndex = 2;
-
-            // Swaps cards every 6 seconds (6000 milliseconds)
-            setInterval(() => {
-                // Remove active styling from old card
-                items[activeIndex].classList.remove('active');
-
-                // Advance track position, loop back to start if at the end
-                activeIndex = (activeIndex + 1) % items.length;
-
-                // Fire active entry animation on new card
-                items[activeIndex].classList.add('active');
-            }, 6000);
-        }
-
-        // Initialize script execution after DOM loading finishes
-        window.onload = runRotatorEngine;
-    </script>
 
 </body>
 </html>
