@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stream Overlay - Cyber Aqua Fast</title>
+    <title>Stream Overlay - Cyber Matrix Premium Frame</title>
     <style>
         * {
             margin: 0;
@@ -20,7 +20,7 @@
             display: flex;
         }
 
-        /* Left Side: iPad Gameplay Area (1440x1080) */
+        /* Left Side: iPad Gameplay Viewport */
         .gameplay-container {
             width: 1440px;
             height: 1080px;
@@ -33,19 +33,17 @@
             z-index: 1;
         }
 
-        /* 4:3 Aspect Ratio Edge Boundary Guide */
         .ipad-screen-placeholder {
             position: absolute;
             top: 0;
             left: 0;
             width: 1440px;
             height: 1080px;
-            border-right: 2px solid rgba(0, 255, 213, 0.3);
+            border-right: 2px solid rgba(0, 255, 213, 0.25);
             background: transparent;
             z-index: -1;
         }
 
-        /* Live Indicator Animation */
         .live-indicator {
             position: absolute;
             top: 25px;
@@ -59,7 +57,7 @@
             letter-spacing: 1px;
             text-transform: uppercase;
             box-shadow: 0 0 15px rgba(0, 255, 213, 0.6);
-            animation: indicatorPulse 1.5s infinite; /* Made pulse slightly faster */
+            animation: indicatorPulse 1.5s infinite;
         }
 
         @keyframes indicatorPulse {
@@ -68,7 +66,7 @@
             100% { transform: scale(1); opacity: 0.9; box-shadow: 0 0 0 0 rgba(0, 255, 213, 0); }
         }
 
-        /* CLEAN ANIMATED RIGHT SIDEBAR */
+        /* HIGH-SPEED CLEAN NEON MATRIX RIGHT SIDEBAR */
         .sidebar {
             width: 480px;
             height: 1080px;
@@ -76,39 +74,31 @@
             z-index: 2;
             overflow: hidden;
             
-            /* Fluid Diagonal Moving Gradient (Black, Aqua, Dark Blue) */
-            background: linear-gradient(-45deg, #000000, #001326, #002b47, #005c7a, #00ffd5, #000000);
+            /* Enhanced Matrix Gradient Sequence matching the background style */
+            background: linear-gradient(-45deg, 
+                #000000, #001326, #2b0047, #4a0018, 
+                #ff0055, #9900ff, #00ffd5, #00ff66, #000000);
             background-size: 400% 400%;
-            /* Animation speed boosted from 12s to 5s for a much faster gradient cycle */
             animation: gradientLoop 5s ease infinite;
             
-            /* Neon Left Border dividing sidebar from game */
             border-left: 4px solid #00ffd5;
             box-shadow: -10px 0px 30px rgba(0, 255, 213, 0.2), -20px 0px 50px rgba(0, 0, 0, 0.8);
         }
 
-        /* Cyber Scanline Overlay Effect */
         .sidebar::before {
             content: " ";
             display: block;
             position: absolute;
             top: 0; left: 0; bottom: 0; right: 0;
             background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%),
-                        linear-gradient(90deg, rgba(0, 255, 213, 0.02), rgba(0, 0, 255, 0.01), rgba(0, 255, 213, 0.02));
+                        linear-gradient(90deg, rgba(0, 255, 213, 0.02), rgba(255, 0, 150, 0.01), rgba(0, 255, 102, 0.02));
             z-index: 3;
             background-size: 100% 4px, 6px 100%;
             pointer-events: none;
         }
 
-        /* Fluid Background Keyframes */
-        @keyframes gradientLoop {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* FLOATING PARTICLES (DOTS) ENGINE */
-        .particles-container {
+        /* FLOATING MULTI-COLOR PARTICLES SYSTEM (SIDEBAR SCALE) */
+        .sidebar-particles {
             position: absolute;
             top: 0;
             left: 0;
@@ -118,74 +108,70 @@
             pointer-events: none;
         }
 
-        .dot {
+        .sidebar-dot {
             position: absolute;
             bottom: -20px;
-            background: rgba(0, 255, 213, 0.6);
             border-radius: 50%;
-            box-shadow: 0 0 10px rgba(0, 255, 213, 0.8);
-            animation: floatUp linear infinite;
+            animation: sidebarFloatUp linear infinite;
         }
 
-        @keyframes floatUp {
-            0% {
-                transform: translateY(0) translateX(0);
-                opacity: 0;
-            }
+        @keyframes sidebarFloatUp {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
             10% { opacity: 0.7; }
             90% { opacity: 0.7; }
-            100% {
-                transform: translateY(-1150px) translateX(60px);
-                opacity: 0;
-            }
+            100% { transform: translateY(-1150px) translateX(50px); opacity: 0; }
         }
 
-        /* Animation Speeds cut nearly in half to make particles zip upwards rapidly */
-        .d1 { left: 10%; width: 6px; height: 6px; animation-duration: 4s; animation-delay: 0s; }
-        .d2 { left: 25%; width: 4px; height: 4px; animation-duration: 5.5s; animation-delay: 0.7s; background: rgba(0, 92, 122, 0.7); }
-        .d3 { left: 45%; width: 8px; height: 8px; animation-duration: 3.5s; animation-delay: 1.5s; }
-        .d4 { left: 70%; width: 5px; height: 5px; animation-duration: 4.5s; animation-delay: 0.2s; }
-        .d5 { left: 85%; width: 7px; height: 7px; animation-duration: 6s; animation-delay: 2s; }
-        .d6 { left: 35%; width: 5px; height: 5px; animation-duration: 5s; animation-delay: 1s; }
-        .d7 { left: 60%; width: 9px; height: 9px; animation-duration: 3s; animation-delay: 2.7s; }
-        .d8 { left: 20%; width: 4px; height: 4px; animation-duration: 6.5s; animation-delay: 0.5s; }
-        .d9 { left: 75%; width: 6px; height: 6px; animation-duration: 4.2s; animation-delay: 1.2s; }
-        .d10 { left: 50%; width: 5px; height: 5px; animation-duration: 5.2s; animation-delay: 3s; }
-        .d11 { left: 90%; width: 7px; height: 7px; animation-duration: 3.7s; animation-delay: 0.9s; }
-        .d12 { left: 15%; width: 8px; height: 8px; animation-duration: 4.7s; animation-delay: 2.4s; }
-        .d13 { left: 40%; width: 4px; height: 4px; animation-duration: 5.7s; animation-delay: 1.6s; }
-        .d14 { left: 65%; width: 6px; height: 6px; animation-duration: 4s; animation-delay: 3.5s; }
-        .d15 { left: 80%; width: 5px; height: 5px; animation-duration: 5s; animation-delay: 0.1s; }
-        .d16 { left: 30%; width: 7px; height: 7px; animation-duration: 6.2s; animation-delay: 2.5s; }
-        .d17 { left: 55%; width: 4px; height: 4px; animation-duration: 4.5s; animation-delay: 3.1s; }
-        .d18 { left: 95%; width: 6px; height: 6px; animation-duration: 3.5s; animation-delay: 1.8s; }
-        .d19 { left: 5%; width: 5px; height: 5px; animation-duration: 5.5s; animation-delay: 4s; }
-        .d20 { left: 22%; width: 8px; height: 8px; animation-duration: 4.2s; animation-delay: 2.1s; }
-        .d21 { left: 48%; width: 6px; height: 6px; animation-duration: 5s; animation-delay: 0.5s; }
-        .d22 { left: 73%; width: 4px; height: 4px; animation-duration: 6.5s; animation-delay: 2.6s; }
-        .d23 { left: 88%; width: 7px; height: 7px; animation-duration: 3.2s; animation-delay: 1.3s; }
-        .d24 { left: 38%; width: 5px; height: 5px; animation-duration: 4.7s; animation-delay: 3.7s; }
+        /* Staggered Sidebar Particles matching the new vibrant colors */
+        .sd1 { left: 10%; width: 6px; height: 6px; animation-duration: 4s; background: #00ffd5; box-shadow: 0 0 10px #00ffd5; }
+        .sd2 { left: 25%; width: 4px; height: 4px; animation-duration: 5.5s; animation-delay: 0.7s; background: #ff0077; box-shadow: 0 0 10px #ff0077; }
+        .sd3 { left: 45%; width: 8px; height: 8px; animation-duration: 3.5s; animation-delay: 1.5s; background: #9900ff; box-shadow: 0 0 10px #9900ff; }
+        .sd4 { left: 70%; width: 5px; height: 5px; animation-duration: 4.5s; animation-delay: 0.2s; background: #00ff66; box-shadow: 0 0 10px #00ff66; }
+        .sd5 { left: 85%; width: 7px; height: 7px; animation-duration: 6s; animation-delay: 2s; background: #00ffd5; box-shadow: 0 0 10px #00ffd5; }
+        .sd6 { left: 35%; width: 5px; height: 5px; animation-duration: 5s; animation-delay: 1s; background: #ff0077; box-shadow: 0 0 10px #ff0077; }
+        .sd7 { left: 60%; width: 9px; height: 9px; animation-duration: 3s; animation-delay: 2.7s; background: #9900ff; box-shadow: 0 0 10px #9900ff; }
+        .sd8 { left: 20%; width: 4px; height: 4px; animation-duration: 6.5s; animation-delay: 0.5s; background: #00ff66; box-shadow: 0 0 10px #00ff66; }
+        .sd9 { left: 75%; width: 6px; height: 6px; animation-duration: 4.2s; animation-delay: 1.2s; background: #ff0077; box-shadow: 0 0 10px #ff0077; }
+        .sd10 { left: 50%; width: 5px; height: 5px; animation-duration: 5.2s; animation-delay: 3s; background: #00ffd5; box-shadow: 0 0 10px #00ffd5; }
+        .sd11 { left: 90%; width: 7px; height: 7px; animation-duration: 3.7s; animation-delay: 0.9s; background: #00ff66; box-shadow: 0 0 10px #00ff66; }
+        .sd12 { left: 15%; width: 8px; height: 8px; animation-duration: 4.7s; animation-delay: 2.4s; background: #9900ff; box-shadow: 0 0 10px #9900ff; }
 
-        /* Content Containers (Shifted to Left Side Overlay) */
+        /* Left-Side Interface Panels */
         .panel {
-            background: rgba(0, 19, 38, 0.65);
+            background: rgba(0, 5, 15, 0.75);
             padding: 20px;
             border-radius: 14px;
-            border: 1px solid rgba(0, 255, 213, 0.2);
-            border-left: 4px solid #00ffd5; /* Accent flipped to the left edge */
+            border: 1px solid rgba(0, 255, 213, 0.15);
+            border-left: 4px solid #00ffd5;
             backdrop-filter: blur(12px);
             z-index: 5;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-            animation: panelGlow 2s ease-in-out infinite alternate; /* Glow cycle accelerated */
-            max-width: 400px; /* Kept concise so it won't block gameplay */
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+            animation: panelGlow 2s ease-in-out infinite alternate;
+            max-width: 400px;
         }
 
         @keyframes panelGlow {
-            0% { border-color: rgba(0, 255, 213, 0.2); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5); }
-            100% { border-color: rgba(0, 255, 213, 0.6); box-shadow: 0 8px 32px 0 rgba(0, 255, 213, 0.15); }
+            0% { border-color: rgba(0, 255, 213, 0.15); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6); }
+            100% { border-color: rgba(255, 0, 119, 0.4); box-shadow: 0 8px 32px 0 rgba(255, 0, 119, 0.1); }
         }
 
-        /* Bottom Left Slot: Goals / Info Box */
+        .webcam-container {
+            height: 220px;
+            margin-top: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .placeholder-text {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
         .info-container {
             height: 140px;
             display: flex;
@@ -215,19 +201,22 @@
             <div class="live-indicator">Live</div>
         </div>
 
+        <div class="panel webcam-container">
+            <div class="placeholder-text">[ Webcam / Chat Overlay ]</div>
+        </div>
+
+        <div class="panel info-container">
+            <h2>Welcome To The Stream</h2>
+            <p>Drop a follow and share the live stream! Thank you for supporting the channel.</p>
+        </div>
     </div>
 
     <div class="sidebar">
-        
-        <div class="particles-container">
-            <div class="dot d1"></div><div class="dot d2"></div><div class="dot d3"></div><div class="dot d4"></div>
-            <div class="dot d5"></div><div class="dot d6"></div><div class="dot d7"></div><div class="dot d8"></div>
-            <div class="dot d9"></div><div class="dot d10"></div><div class="dot d11"></div><div class="dot d12"></div>
-            <div class="dot d13"></div><div class="dot d14"></div><div class="dot d15"></div><div class="dot d16"></div>
-            <div class="dot d17"></div><div class="dot d18"></div><div class="dot d19"></div><div class="dot d20"></div>
-            <div class="dot d21"></div><div class="dot d22"></div><div class="dot d23"></div><div class="dot d24"></div>
+        <div class="sidebar-particles">
+            <div class="sidebar-dot sd1"></div><div class="sidebar-dot sd2"></div><div class="sidebar-dot sd3"></div><div class="sidebar-dot sd4"></div>
+            <div class="sidebar-dot sd5"></div><div class="sidebar-dot sd6"></div><div class="sidebar-dot sd7"></div><div class="sidebar-dot sd8"></div>
+            <div class="sidebar-dot sd9"></div><div class="sidebar-dot sd10"></div><div class="sidebar-dot sd11"></div><div class="sidebar-dot sd12"></div>
         </div>
-
     </div>
 
 </body>
