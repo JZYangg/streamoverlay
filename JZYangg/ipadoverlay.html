@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stream Overlay - Cyber Aqua</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            background-color: transparent;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            display: flex;
+        }
+
+        /* Left Side: The iPad Gameplay Area */
+        .gameplay-container {
+            width: 1440px;
+            height: 1080px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: transparent;
+            z-index: 1;
+        }
+
+        /* 4:3 Aspect Ratio Edge Box for iPad Display */
+        .ipad-screen-placeholder {
+            width: 1440px;
+            height: 1080px;
+            border-right: 2px solid rgba(0, 255, 213, 0.3);
+            background: transparent;
+            position: relative;
+        }
+
+        /* Live Indicator Animation */
+        .live-indicator {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            background: #00ffd5;
+            color: #001326;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px rgba(0, 255, 213, 0.6);
+            animation: indicatorPulse 2s infinite;
+        }
+
+        @keyframes indicatorPulse {
+            0% { transform: scale(1); opacity: 0.9; box-shadow: 0 0 0 0 rgba(0, 255, 213, 0.7); }
+            50% { transform: scale(1.05); opacity: 1; box-shadow: 0 0 0 10px rgba(0, 255, 213, 0); }
+            100% { transform: scale(1); opacity: 0.9; box-shadow: 0 0 0 0 rgba(0, 255, 213, 0); }
+        }
+
+        /* PREMIUM ANIMATED RIGHT SIDEBAR */
+        .sidebar {
+            width: 480px;
+            height: 1080px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 40px;
+            color: white;
+            z-index: 2;
+            overflow: hidden;
+            
+            /* Enhanced Fluid Diagonal Moving Gradient (Black, Aqua, Dark Blue) */
+            background: linear-gradient(-45deg, #000000, #001326, #002b47, #005c7a, #00ffd5, #000000);
+            background-size: 400% 400%;
+            animation: gradientLoop 12s ease infinite;
+            
+            /* Neon Left Border dividing sidebar from game */
+            border-left: 4px solid #00ffd5;
+            box-shadow: -10px 0px 30px rgba(0, 255, 213, 0.2), -20px 0px 50px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Cyber Scanline Overlay Effect */
+        .sidebar::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%),
+                        linear-gradient(90deg, rgba(0, 255, 213, 0.02), rgba(0, 0, 255, 0.01), rgba(0, 255, 213, 0.02));
+            z-index: 3;
+            background-size: 100% 4px, 6px 100%;
+            pointer-events: none;
+        }
+
+        /* Fluid Background Keyframes */
+        @keyframes gradientLoop {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* FLOATING PARTICLES (DOTS) ENGINE */
+        .particles-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        .dot {
+            position: absolute;
+            bottom: -20px;
+            background: rgba(0, 255, 213, 0.6);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 255, 213, 0.8);
+            animation: floatUp 10s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% {
+                transform: translateY(-1150px) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        /* Staggered positions, sizes, and animation timings for 24 distinct dots */
+        .d1 { left: 10%; width: 6px; height: 6px; animation-duration: 8s; animation-delay: 0s; }
+        .d2 { left: 25%; width: 4px; height: 4px; animation-duration: 11s; animation-delay: 1.5s; background: rgba(0, 92, 122, 0.7); }
+        .d3 { left: 45%; width: 8px; height: 8px; animation-duration: 7s; animation-delay: 3s; }
+        .d4 { left: 70%; width: 5px; height: 5px; animation-duration: 9s; animation-delay: 0.5s; }
+        .d5 { left: 85%; width: 7px; height: 7px; animation-duration: 12s; animation-delay: 4s; }
+        .d6 { left: 35%; width: 5px; height: 5px; animation-duration: 10s; animation-delay: 2s; }
+        .d7 { left: 60%; width: 9px; height: 9px; animation-duration: 6s; animation-delay: 5.5s; }
+        .d8 { left: 20%; width: 4px; height: 4px; animation-duration: 13s; animation-delay: 1s; }
+        .d9 { left: 75%; width: 6px; height: 6px; animation-duration: 8.5s; animation-delay: 2.5s; }
+        .d10 { left: 50%; width: 5px; height: 5px; animation-duration: 10.5s; animation-delay: 6s; }
+        .d11 { left: 90%; width: 7px; height: 7px; animation-duration: 7.5s; animation-delay: 1.8s; }
+        .d12 { left: 15%; width: 8px; height: 8px; animation-duration: 9.5s; animation-delay: 4.8s; }
+        .d13 { left: 40%; width: 4px; height: 4px; animation-duration: 11.5s; animation-delay: 3.2s; }
+        .d14 { left: 65%; width: 6px; height: 6px; animation-duration: 8s; animation-delay: 7s; }
+        .d15 { left: 80%; width: 5px; height: 5px; animation-duration: 10s; animation-delay: 0.2s; }
+        .d16 { left: 30%; width: 7px; height: 7px; animation-duration: 12.5s; animation-delay: 5s; }
+        .d17 { left: 55%; width: 4px; height: 4px; animation-duration: 9s; animation-delay: 6.2s; }
+        .d18 { left: 95%; width: 6px; height: 6px; animation-duration: 7s; animation-delay: 3.7s; }
+        .d19 { left: 5%; width: 5px; height: 5px; animation-duration: 11s; animation-delay: 8s; }
+        .d20 { left: 22%; width: 8px; height: 8px; animation-duration: 8.5s; animation-delay: 4.2s; }
+        .d21 { left: 48%; width: 6px; height: 6px; animation-duration: 10s; animation-delay: 1.1s; }
+        .d22 { left: 73%; width: 4px; height: 4px; animation-duration: 13s; animation-delay: 5.3s; }
+        .d23 { left: 88%; width: 7px; height: 7px; animation-duration: 6.5s; animation-delay: 2.7s; }
+        .d24 { left: 38%; width: 5px; height: 5px; animation-duration: 9.5s; animation-delay: 7.5s; }
+
+        /* Content Containers (Glassmorphism Look) */
+        .panel {
+            background: rgba(0, 19, 38, 0.55);
+            padding: 25px;
+            border-radius: 14px;
+            border: 1px solid rgba(0, 255, 213, 0.2);
+            border-right: 4px solid #00ffd5;
+            backdrop-filter: blur(10px);
+            z-index: 5;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+            animation: panelGlow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes panelGlow {
+            0% { border-color: rgba(0, 255, 213, 0.2); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4); }
+            100% { border-color: rgba(0, 255, 213, 0.5); box-shadow: 0 8px 32px 0 rgba(0, 255, 213, 0.08); }
+        }
+
+        /* Top Slot: Webcam / Interactivity Box */
+        .webcam-container {
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .placeholder-text {
+            color: rgba(0, 255, 213, 0.5);
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        /* Bottom Slot: Stream Goal / Info Box */
+        .info-container {
+            height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .info-container h2 {
+            font-size: 18px;
+            color: #00ffd5;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .info-container p {
+            font-size: 14px;
+            color: #cbd5e1;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="gameplay-container">
+        <div class="ipad-screen-placeholder">
+            <div class="live-indicator">Live</div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        
+        <div class="particles-container">
+            <div class="dot d1"></div><div class="dot d2"></div><div class="dot d3"></div><div class="dot d4"></div>
+            <div class="dot d5"></div><div class="dot d6"></div><div class="dot d7"></div><div class="dot d8"></div>
+            <div class="dot d9"></div><div class="dot d10"></div><div class="dot d11"></div><div class="dot d12"></div>
+            <div class="dot d13"></div><div class="dot d14"></div><div class="dot d15"></div><div class="dot d16"></div>
+            <div class="dot d17"></div><div class="dot d18"></div><div class="dot d19"></div><div class="dot d20"></div>
+            <div class="dot d21"></div><div class="dot d22"></div><div class="dot d23"></div><div class="dot d24"></div>
+        </div>
+
+        <div class="panel webcam-container">
+            <div class="placeholder-text">[ Place Webcam or Chat Here ]</div>
+        </div>
+
+        <div class="panel info-container">
+            <h2>Welcome To The Stream</h2>
+            <p>Drop a follow and share the live stream! Thank you for hanging out and supporting the channel.</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
