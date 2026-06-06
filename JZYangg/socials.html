@@ -22,12 +22,22 @@
             height: 100px; /* Optimized default widget height */
         }
 
-        /* THE CONTAINER BOX */
+        /* KEYFRAMES FOR THE CHAMELEON FLUID LOOP OVERLAY BACKGROUND */
+        @keyframes cyberFluidGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* THE CONTAINER BOX WITH SAME SHADER GRADIENT */
         .rotator-container {
             position: relative;
             width: 420px;
             height: 80px;
-            background: rgba(2, 10, 24, 0.85); /* Slick dark background */
+            /* Matches exact dark theme palette: black, deep blue, cyber aqua */
+            background: linear-gradient(-45deg, #020a18, #0a1931, #001220, #008299, #00ffd5);
+            background-size: 400% 400%;
+            animation: cyberFluidGradient 12s ease infinite;
             border: 2px solid #00ffd5; /* Premium Aqua Border */
             box-shadow: 0 0 20px rgba(0, 255, 213, 0.25), inset 0 0 10px rgba(0, 255, 213, 0.1);
             border-radius: 14px;
@@ -37,7 +47,7 @@
             justify-content: center;
         }
 
-        /* BASE STATE FOR ROTATOR CARDS (Would be hidden by default) */
+        /* BASE STATE FOR ROTATOR CARDS */
         .rotator-item {
             position: absolute;
             display: flex;
@@ -46,28 +56,23 @@
             gap: 16px;
             width: 100%;
             height: 100%;
-            opacity: 0;
-            transform: translateX(40px); /* Pushed out to the right */
-            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             pointer-events: none;
         }
 
-        /* ACTIVE STATE (Triggered dynamically by JavaScript) */
-        .rotator-item.active {
-            opacity: 1;
-            transform: translateX(0); /* Centers perfectly */
-            pointer-events: auto;
-        }
-
-        /* CUSTOM LOGO/ICON STYLING */
+        /* CUSTOM LOGO/ICON STYLING (Bounces Up on Exit / Entry) */
         .rotator-custom-icon {
             height: 34px; /* Forces all uploaded icons to be uniform */
             width: auto;  /* Prevents your logo shapes from stretching */
             object-fit: contain;
             filter: drop-shadow(0 0 6px rgba(0, 255, 213, 0.7)); /* Custom cyber-glow */
+            
+            /* Initial Exit/Hidden State: Shifted downward out of frame */
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* NEON TYPOGRAPHY STYLING */
+        /* NEON TYPOGRAPHY STYLING (Clean Fading Transitions) */
         .rotator-text {
             color: #ffffff;
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -75,6 +80,25 @@
             font-weight: 700;
             letter-spacing: 1px;
             text-shadow: 0 0 8px rgba(0, 255, 213, 0.6), 0 0 20px rgba(0, 98, 255, 0.4);
+            
+            /* Initial Exit/Hidden State: Clean absolute zero opacity fade */
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+        }
+
+        /* ACTIVE STATE (Triggered dynamically by JavaScript) */
+        .rotator-item.active {
+            pointer-events: auto;
+        }
+
+        /* Active Transition Adjustments */
+        .rotator-item.active .rotator-custom-icon {
+            opacity: 1;
+            transform: translateY(0); /* Bounces fluidly up into perfect focus center */
+        }
+
+        .rotator-item.active .rotator-text {
+            opacity: 1; /* Fades smoothly on entry */
         }
     </style>
 </head>
@@ -112,7 +136,8 @@
     <script>
         function runRotatorEngine() {
             const items = document.querySelectorAll('.rotator-item');
-            let activeIndex = 0;
+            // Synchronized to match the initially marked 'active' TikTok index position (slide #3)
+            let activeIndex = 2;
 
             // Swaps cards every 6 seconds (6000 milliseconds)
             setInterval(() => {
