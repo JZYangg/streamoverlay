@@ -32,9 +32,7 @@
             z-index: 1;
         }
 
-        /* TRUE HOLLOW CUTOUT BORDER FRAME 
-           This container isolates the spinning animation ONLY to a 4px perimeter ring.
-        */
+        /* TRUE HOLLOW CUTOUT BORDER FRAME */
         .border-animation-wrapper {
             position: absolute;
             top: 0;
@@ -46,15 +44,17 @@
             pointer-events: none;
             z-index: -1;
             
-            /* This cuts out the center completely */
-            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            /* Center Cutout Masking - Uses clean alpha blending to completely hide white borders */
+            mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0);
+            -webkit-mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0);
             mask-composite: exclude;
             -webkit-mask-composite: xor;
-            padding: 12px; /* Controls the exact thickness of your colored border line */
+            
+            /* Controls the thick colorful track frame width */
+            padding: 10px; 
         }
 
-        /* The spinning colors now live inside the cutout ring wrapper */
+        /* The spinning colors inside the cutout ring wrapper */
         .border-animation-wrapper::before {
             content: '';
             position: absolute;
@@ -73,17 +73,17 @@
             animation: matrixFluidLoop 4s linear infinite;
         }
 
-        /* Inner Shadow Ring (Keeps depth lines without covering the center window) */
+        /* Inner Shadow Ring - Clean layout blend with no rigid outlines */
         .inner-frame-shadow {
             position: absolute;
-            top: 12px;
-            left: 12px;
-            right: 12px;
-            bottom: 12px;
-            border-radius: 8px;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border-radius: 4px;
             pointer-events: none;
             z-index: 2;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.7);
         }
 
         /* Unified Fluid-Rotation Multi-Color Translation Loop */
@@ -101,22 +101,22 @@
             }
         }
 
-        /* Tech Scanlines Overlay - light horizontal lines over camera */
+        /* Tech Scanlines Overlay - Fades directly over the camera viewport area */
         .scanlines {
             position: absolute;
-            top: 12px;
-            left: 12px;
-            right: 12px;
-            bottom: 12px;
-            border-radius: 8px;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.12) 50%);
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border-radius: 4px;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%);
             background-size: 100% 4px;
             z-index: 3;
             pointer-events: none;
-            opacity: 0.4;
+            opacity: 0.35;
         }
 
-        /* Outer Glow Contour System utilizing Cyber Cyan #00ffd5 styling */
+        /* Dynamic Outer Glow Contour System matching your spinning themes */
         .glow-contour {
             position: absolute;
             top: 0;
@@ -124,37 +124,34 @@
             right: 0;
             bottom: 0;
             border-radius: 12px;
-            border: 1px solid rgba(0, 255, 213, 0.25);
             pointer-events: none;
             z-index: 4;
-            animation: contourPulse 2s ease-in-out infinite alternate;
+            animation: contourPulse 2.5s ease-in-out infinite alternate;
         }
 
         @keyframes contourPulse {
             0% {
-                box-shadow: 0 0 10px rgba(0, 255, 213, 0.2);
-                border-color: rgba(0, 255, 213, 0.25);
+                box-shadow: 0 0 12px rgba(0, 255, 213, 0.25);
             }
             100% {
-                box-shadow: 0 0 25px rgba(255, 0, 85, 0.4);
-                border-color: rgba(255, 0, 85, 0.4);
+                box-shadow: 0 0 25px rgba(255, 0, 85, 0.45);
             }
         }
 
-        /* Corner Tech Brackets matching Sidebar Laser Cyan accent */
+        /* Tech Corner Brackets - Sits precisely on the interior color borders */
         .bracket {
             position: absolute;
-            width: 18px;
-            height: 18px;
+            width: 14px;
+            height: 14px;
             border: 2px solid #00ffd5;
             z-index: 5;
             pointer-events: none;
-            filter: drop-shadow(0 0 4px #00ffd5);
+            filter: drop-shadow(0 0 3px #00ffd5);
         }
-        .top-left { top: 10px; left: 10px; border-right: none; border-bottom: none; }
-        .top-right { top: 10px; right: 10px; border-left: none; border-bottom: none; }
-        .bottom-left { bottom: 10px; left: 10px; border-right: none; border-top: none; }
-        .bottom-right { bottom: 10px; right: 10px; border-left: none; border-top: none; }
+        .top-left { top: 14px; left: 14px; border-right: none; border-bottom: none; }
+        .top-right { top: 14px; right: 14px; border-left: none; border-bottom: none; }
+        .bottom-left { bottom: 14px; left: 14px; border-right: none; border-top: none; }
+        .bracket.bottom-right { bottom: 14px; right: 14px; border-left: none; border-top: none; }
     </style>
 </head>
 <body>
