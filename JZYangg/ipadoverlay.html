@@ -20,9 +20,9 @@
             display: flex;
         }
 
-        /* Left Side: iPad Gameplay Viewport */
+        /* Left Side: iPad Gameplay Viewport (Expanded from 1440px to 1520px) */
         .gameplay-container {
-            width: 1440px;
+            width: 1520px;
             height: 1080px;
             position: relative;
             display: flex;
@@ -37,7 +37,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 1440px;
+            width: 1520px;
             height: 1080px;
             border-right: 2px solid rgba(0, 255, 213, 0.25);
             background: transparent;
@@ -66,12 +66,12 @@
             100% { transform: scale(1); opacity: 0.9; box-shadow: 0 0 0 0 rgba(0, 255, 213, 0); }
         }
 
-        /* HIGH-SPEED CLEAN NEON MATRIX RIGHT SIDEBAR */
+        /* HIGH-SPEED CLEAN NEON MATRIX RIGHT SIDEBAR (Shrunk from 480px to 400px) */
         .sidebar {
-            width: 420px;
+            width: 400px;
             height: 1080px;
             position: relative;
-            z-index: 0;
+            z-index: 2;
             overflow: hidden;
             
             /* EXACT DETAILED GRADIENT MATCH TRACKED TO MOVE FORWARD ONLY */
@@ -109,7 +109,7 @@
             position: absolute;
             top: -50px;
             left: 0;
-            width: 480px;
+            width: 400px; /* Adjusted to fit the narrower sidebar */
             height: 1180px;
             z-index: 4;
             pointer-events: none;
@@ -143,7 +143,7 @@
         .laser-1b {
             stroke: #00ff66;
             filter: drop-shadow(0px 0px 8px #00ff66) drop-shadow(0px 0px 15px #00ffd5);
-            animation-delay: -2.25s; /* Perfectly offset by half the duration to loop continuously */
+            animation-delay: -2.25s; 
         }
 
         /* Right-Sided Pink/Purple Wave Tracks */
@@ -154,7 +154,7 @@
         .laser-2b {
             stroke: #9900ff;
             filter: drop-shadow(0px 0px 8px #9900ff) drop-shadow(0px 0px 15px #ff0077);
-            animation-delay: -2.25s; /* Keep stream populated with trailing color waves */
+            animation-delay: -2.25s; 
         }
 
         /* Continuous forward down-scrolling calculation */
@@ -189,7 +189,7 @@
             0% { transform: translateY(0) translateX(0); opacity: 0; }
             10% { opacity: 0.7; }
             90% { opacity: 0.7; }
-            100% { transform: translateY(-1150px) translateX(50px); opacity: 0; }
+            100% { transform: translateY(-1150px) translateX(30px); opacity: 0; }
         }
 
         .sd1 { left: 10%; width: 6px; height: 6px; animation-duration: 4s; background: #00ffd5; box-shadow: 0 0 10px #00ffd5; }
@@ -274,14 +274,14 @@
     <div class="sidebar">
         
         <div class="sidebar-wave-container">
-            <svg class="sidebar-wave-svg" viewBox="0 0 480 1180" preserveAspectRatio="none">
-                <path class="sidebar-base-track" d="M 120,0 Q 360,295 120,590 T 360,1180" />
-                <path class="sidebar-laser laser-1a" d="M 120,0 Q 360,295 120,590 T 360,1180" />
-                <path class="sidebar-laser laser-1b" d="M 120,0 Q 360,295 120,590 T 360,1180" />
+            <svg class="sidebar-wave-svg" viewBox="0 0 400 1180" preserveAspectRatio="none">
+                <path class="sidebar-base-track" d="M 100,0 Q 300,295 100,590 T 300,1180" />
+                <path class="sidebar-laser laser-1a" d="M 100,0 Q 300,295 100,590 T 300,1180" />
+                <path class="sidebar-laser laser-1b" d="M 100,0 Q 300,295 100,590 T 300,1180" />
                 
-                <path class="sidebar-base-track" d="M 360,0 Q 120,295 360,590 T 120,1180" />
-                <path class="sidebar-laser laser-2a" d="M 360,0 Q 120,295 360,590 T 120,1180" />
-                <path class="sidebar-laser laser-2b" d="M 360,0 Q 120,295 360,590 T 120,1180" />
+                <path class="sidebar-base-track" d="M 300,0 Q 100,295 300,590 T 100,1180" />
+                <path class="sidebar-laser laser-2a" d="M 300,0 Q 100,295 300,590 T 100,1180" />
+                <path class="sidebar-laser laser-2b" d="M 300,0 Q 100,295 300,590 T 100,1180" />
             </svg>
         </div>
 
