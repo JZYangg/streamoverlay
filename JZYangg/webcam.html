@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stream Overlay - Cyber Red Fluid Webcam Border</title>
+    <title>Stream Overlay - Cyber Matrix Animated Webcam Border</title>
     <style>
         * {
             margin: 0;
@@ -27,45 +27,50 @@
             width: 480px;
             height: 270px;
             position: relative;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 8px;
+            background: rgba(0, 5, 15, 0.75);
+            border-radius: 12px;
             z-index: 1;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.85);
             overflow: hidden;
         }
 
-        /* Pure Black & Red Fluid Moving Gradient Border Base */
+        /* Full Dynamic Color Matrix Border System */
         .webcam-panel::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            /* Exact color synchronization from your sidebar styling */
-            background: linear-gradient(-45deg, #000000, #400000, #ff002b, #100000, #ff1a40, #000000);
+            top: -20%;
+            left: -20%;
+            width: 140%;
+            height: 140%;
+            
+            /* SYNCHRONIZED MULTI-COLOR GRADIENT STRIP TRACK */
+            background: linear-gradient(270deg, 
+                #000000, #001326, #2b0047, #4a0018, 
+                #ff0055, #9900ff, #00ffd5, #00ff66, #000000);
             background-size: 200% 200%;
-            animation: fluidBorderLoop 6s ease infinite;
+            
+            /* High-visibility horizontal flow coupled with cyclic rotational shifting */
+            animation: matrixFluidLoop 6s linear infinite;
             z-index: -2;
         }
 
-        /* Inner Content Mask to isolate a sharp 4px border track thickness */
+        /* Inner Content Frame Mask forming a clean 4px border track width */
         .webcam-panel::after {
             content: '';
             position: absolute;
-            top: 4px;      /* Border thickness adjustment */
+            top: 4px;      /* Border line thickness */
             left: 4px;     
             right: 4px;    
             bottom: 4px;   
             background: transparent; 
-            border-radius: 6px;
+            border-radius: 9px;
             z-index: -1;
             pointer-events: none;
             box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.8);
         }
 
-        /* Fluid Gradient Wave and Rotation Loop combo to maximize visibility */
-        @keyframes fluidBorderLoop {
+        /* Unified Fluid-Rotation Multi-Color Translation Loop */
+        @keyframes matrixFluidLoop {
             0% {
                 background-position: 0% 50%;
                 transform: rotate(0deg);
@@ -74,80 +79,81 @@
                 background-position: 100% 50%;
             }
             100% {
-                background-position: 0% 50%;
+                background-position: 200% 50%;
                 transform: rotate(360deg);
             }
         }
 
-        /* Tech Cyber Scanlines matching the sidebar overlay alpha layer */
+        /* Cyber Matrix Tech Scanlines Overlay */
         .scanlines {
             position: absolute;
             top: 4px;
             left: 4px;
             right: 4px;
             bottom: 4px;
-            border-radius: 6px;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%);
-            background-size: 100% 4px;
+            border-radius: 9px;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+                        linear-gradient(90deg, rgba(0, 255, 213, 0.02), rgba(255, 0, 150, 0.01), rgba(0, 255, 102, 0.02));
+            background-size: 100% 4px, 6px 100%;
             z-index: 2;
             pointer-events: none;
-            opacity: 0.6;
+            opacity: 0.7;
         }
 
-        /* Outer Glow Pulsing Contour System matching the signature red theme color */
+        /* Outer Glow Contour System utilizing Cyber Cyan #00ffd5 styling */
         .glow-contour {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 26, 64, 0.3);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 255, 213, 0.25);
             pointer-events: none;
             z-index: 3;
-            animation: contourPulse 2.5s ease-in-out infinite alternate;
+            animation: contourPulse 2s ease-in-out infinite alternate;
         }
 
         @keyframes contourPulse {
             0% {
-                box-shadow: 0 0 8px rgba(255, 26, 64, 0.2);
-                border-color: rgba(255, 26, 64, 0.3);
+                box-shadow: 0 0 10px rgba(0, 255, 213, 0.2);
+                border-color: rgba(0, 255, 213, 0.25);
             }
             100% {
-                box-shadow: 0 0 22px rgba(255, 0, 43, 0.5);
-                border-color: rgba(255, 0, 43, 0.6);
+                box-shadow: 0 0 25px rgba(255, 0, 85, 0.4);
+                border-color: rgba(255, 0, 85, 0.4);
             }
         }
 
-        /* Corner Hardware Brackets matching the hot crimson accent accents */
+        /* Corner Tech Brackets matching Sidebar Laser Cyan accent */
         .bracket {
             position: absolute;
             width: 14px;
             height: 14px;
-            border: 2px solid #ff1a40;
+            border: 2px solid #00ffd5;
             z-index: 4;
             pointer-events: none;
-            filter: drop-shadow(0 0 4px #ff002b);
+            filter: drop-shadow(0 0 4px #00ffd5);
         }
-        .top-left { top: 12px; left: 12px; border-right: none; border-bottom: none; }
-        .top-right { top: 12px; right: 12px; border-left: none; border-bottom: none; }
-        .bottom-left { bottom: 12px; left: 12px; border-right: none; border-top: none; }
-        .bottom-right { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+        .top-left { top: 10px; left: 10px; border-right: none; border-bottom: none; }
+        .top-right { top: 10px; right: 10px; border-left: none; border-bottom: none; }
+        .bottom-left { bottom: 10px; left: 10px; border-right: none; border-top: none; }
+        .bottom-right { bottom: 10px; right: 10px; border-left: none; border-top: none; }
 
-        /* UI Text Center Indicator */
+        /* UI Placement Text */
         .placeholder-indicator {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            color: rgba(255, 26, 64, 0.35);
+            color: rgba(0, 255, 213, 0.3);
             font-size: 11px;
             font-weight: bold;
             letter-spacing: 3px;
             text-transform: uppercase;
             pointer-events: none;
             z-index: 0;
-            text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
         }
     </style>
 </head>
