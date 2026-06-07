@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stream Overlay - Cyber Matrix Transparent Webcam Border</title>
+    <title>Stream Overlay - Cyber Matrix Hollow Webcam Border</title>
     <style>
         * {
             margin: 0;
@@ -27,22 +27,41 @@
             width: 480px;
             height: 270px;
             position: relative;
-            /* CHANGED: Base container background is now fully clear/transparent */
             background: transparent; 
             border-radius: 12px;
             z-index: 1;
-            overflow: hidden;
         }
 
-        /* Full Dynamic Color Matrix Border System */
-        .webcam-panel::before {
+        /* TRUE HOLLOW CUTOUT BORDER FRAME 
+           This container isolates the spinning animation ONLY to a 4px perimeter ring.
+        */
+        .border-animation-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: -1;
+            
+            /* This cuts out the center completely */
+            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            -webkit-mask-composite: xor;
+            padding: 4px; /* Controls the exact thickness of your colored border line */
+        }
+
+        /* The spinning colors now live inside the cutout ring wrapper */
+        .border-animation-wrapper::before {
             content: '';
             position: absolute;
             top: -150px;
             left: -150px;
             right: -150px;
             bottom: -150px;
-            
             background: linear-gradient(270deg, 
                 #ff0055 0%, 
                 #9900ff 25%, 
@@ -52,23 +71,19 @@
             );
             background-size: 300% 300%;
             animation: matrixFluidLoop 4s linear infinite;
-            z-index: -2;
         }
 
-        /* Inner Content Frame Mask forming a clean 4px border track width */
-        .webcam-mask-inner {
+        /* Inner Shadow Ring (Keeps depth lines without covering the center window) */
+        .inner-frame-shadow {
             position: absolute;
-            top: 4px;      /* Border line thickness */
-            left: 4px;     
-            right: 4px;    
-            bottom: 4px;   
-            /* CHANGED: Clear window allows underlying camera feed layer to pass through */
-            background: transparent; 
-            border-radius: 9px;
-            z-index: -1;
+            top: 4px;
+            left: 4px;
+            right: 4px;
+            bottom: 4px;
+            border-radius: 8px;
             pointer-events: none;
-            /* Keeps a nice inner shading trace on your camera edge for clean depth definition */
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6); 
+            z-index: 2;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
         }
 
         /* Unified Fluid-Rotation Multi-Color Translation Loop */
@@ -86,18 +101,17 @@
             }
         }
 
-        /* Cyber Matrix Tech Scanlines Overlay */
+        /* Tech Scanlines Overlay - light horizontal lines over camera */
         .scanlines {
             position: absolute;
             top: 4px;
             left: 4px;
             right: 4px;
             bottom: 4px;
-            border-radius: 9px;
-            /* Lightened up line filters so they don't block your face capture */
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%);
+            border-radius: 8px;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.12) 50%);
             background-size: 100% 4px;
-            z-index: 2;
+            z-index: 3;
             pointer-events: none;
             opacity: 0.4;
         }
@@ -112,7 +126,7 @@
             border-radius: 12px;
             border: 1px solid rgba(0, 255, 213, 0.25);
             pointer-events: none;
-            z-index: 3;
+            z-index: 4;
             animation: contourPulse 2s ease-in-out infinite alternate;
         }
 
@@ -133,7 +147,7 @@
             width: 14px;
             height: 14px;
             border: 2px solid #00ffd5;
-            z-index: 4;
+            z-index: 5;
             pointer-events: none;
             filter: drop-shadow(0 0 4px #00ffd5);
         }
@@ -146,15 +160,16 @@
 <body>
 
     <div class="webcam-panel">
-        <div class="webcam-mask-inner"></div>
+        <div class="border-animation-wrapper"></div>
+        
+        <div class="inner-frame-shadow"></div>
+        <div class="scanlines"></div>
+        <div class="glow-contour"></div>
 
         <div class="bracket top-left"></div>
         <div class="bracket top-right"></div>
         <div class="bracket bottom-left"></div>
         <div class="bracket bottom-right"></div>
-        
-        <div class="scanlines"></div>
-        <div class="glow-contour"></div>
     </div>
 
 </body>
