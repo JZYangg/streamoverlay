@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Stream Overlay - Slim Sidebar</title>
+    <title>Stream Overlay - Cyber Matrix Premium Frame</title>
     <style>
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
@@ -20,181 +20,277 @@
             display: flex;
         }
 
-        /* Left Side: Expanded iPad Gameplay Area */
+        /* Left Side: iPad Gameplay Viewport */
         .gameplay-container {
-            width: 1536px; /* Expanded from 1440px to fill the new space */
-            height: 1080px;
-            background: transparent;
-            z-index: 1;
-            position: relative;
-        }
-
-        /* Right Side: Slimmed Down Vertical Sidebar (384px Wide) */
-        .sidebar {
-            width: 384px; /* Reduced from 480px */
+            width: 1440px;
             height: 1080px;
             position: relative;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            padding: 30px 20px;
+            justify-content: space-between;
+            padding: 40px;
+            background: transparent;
+            z-index: 1;
+        }
+
+        .ipad-screen-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1440px;
+            height: 1080px;
+            border-right: 2px solid rgba(0, 255, 213, 0.25);
+            background: transparent;
+            z-index: -1;
+        }
+
+        .live-indicator {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            background: #00ffd5;
+            color: #001326;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px rgba(0, 255, 213, 0.6);
+            animation: indicatorPulse 1.5s infinite;
+        }
+
+        @keyframes indicatorPulse {
+            0% { transform: scale(1); opacity: 0.9; box-shadow: 0 0 0 0 rgba(0, 255, 213, 0.7); }
+            50% { transform: scale(1.05); opacity: 1; box-shadow: 0 0 0 10px rgba(0, 255, 213, 0); }
+            100% { transform: scale(1); opacity: 0.9; box-shadow: 0 0 0 0 rgba(0, 255, 213, 0); }
+        }
+
+        /* HIGH-SPEED CLEAN NEON MATRIX RIGHT SIDEBAR */
+        .sidebar {
+            width: 480px;
+            height: 1080px;
+            position: relative;
             z-index: 2;
-            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.7);
-            background: linear-gradient(135px, #000000, #001122, #002244, #000000);
-            background-size: 400% 400%;
-            animation: fluidGradient 24s ease infinite;
+            overflow: hidden;
+            
+            /* EXACT DETAILED GRADIENT MATCH TRACKED TO MOVE FORWARD ONLY */
+            background: linear-gradient(270deg, 
+                #000000, #001326, #2b0047, #4a0018, 
+                #ff0055, #9900ff, #00ffd5, #00ff66, #000000);
+            background-size: 200% 200%;
+            animation: gradientForwardLoop 10s linear infinite;
+            
+            border-left: 4px solid #00ffd5;
+            box-shadow: -10px 0px 30px rgba(0, 255, 213, 0.2), -20px 0px 50px rgba(0, 0, 0, 0.8);
         }
 
-        /* 7-Color Ultra-Dynamic Fluid Background Loop */
-        @keyframes fluidGradient {
+        /* Scanlines Layer Overlay for the sidebar */
+        .sidebar::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+                        linear-gradient(90deg, rgba(0, 255, 213, 0.02), rgba(255, 0, 150, 0.01), rgba(0, 255, 102, 0.02));
+            z-index: 3;
+            background-size: 100% 4px, 6px 100%;
+            pointer-events: none;
+        }
+
+        /* Forward Loop Animation keyframe calculation */
+        @keyframes gradientForwardLoop {
             0% { background-position: 0% 50%; }
-            14% { background-color: #ff0055; } /* Red Node */
-            28% { background-color: #00ff66; } /* Green Node */
-            42% { background-color: #00ffff; } /* Aqua Anchor */
-            57% { background-color: #ff00aa; } /* Pink Node */
-            71% { background-color: #b300ff; } /* Purple Node */
-            85% { background-color: #001133; } /* Deep Blue Anchor */
-            100% { background-position: 100% 50%; }
+            100% { background-position: 200% 50%; }
         }
 
-        /* Floating Ambient Particle Canvas */
-        .particle-container {
+        /* INTEGRATED ENDLESS VERTICAL NEON CYBER WAVES */
+        .sidebar-wave-container {
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 480px;
+            height: 1180px;
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        .sidebar-wave-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .sidebar-base-track {
+            stroke: rgba(255, 255, 255, 0.05);
+            stroke-width: 2px;
+            fill: none;
+        }
+
+        .sidebar-laser {
+            stroke-width: 4px;
+            stroke-linecap: round;
+            fill: none;
+            /* Dash array matching path length for smooth sequential flowing loops */
+            stroke-dasharray: 400 2000;
+            animation: verticalLaserLoop 4.5s linear infinite;
+        }
+
+        /* Left-Sided Blue/Green Wave Tracks */
+        .laser-1a {
+            stroke: #00ffd5;
+            filter: drop-shadow(0px 0px 8px #00ffd5) drop-shadow(0px 0px 15px #00ff66);
+        }
+        .laser-1b {
+            stroke: #00ff66;
+            filter: drop-shadow(0px 0px 8px #00ff66) drop-shadow(0px 0px 15px #00ffd5);
+            animation-delay: -2.25s; /* Perfectly offset by half the duration to loop continuously */
+        }
+
+        /* Right-Sided Pink/Purple Wave Tracks */
+        .laser-2a {
+            stroke: #ff0077;
+            filter: drop-shadow(0px 0px 8px #ff0077) drop-shadow(0px 0px 15px #9900ff);
+        }
+        .laser-2b {
+            stroke: #9900ff;
+            filter: drop-shadow(0px 0px 8px #9900ff) drop-shadow(0px 0px 15px #ff0077);
+            animation-delay: -2.25s; /* Keep stream populated with trailing color waves */
+        }
+
+        /* Continuous forward down-scrolling calculation */
+        @keyframes verticalLaserLoop {
+            0% {
+                stroke-dashoffset: 2400;
+            }
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* FLOATING MULTI-COLOR PARTICLES SYSTEM */
+        .sidebar-particles {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            z-index: 5;
             pointer-events: none;
-            z-index: 1;
         }
 
-        .dot {
+        .sidebar-dot {
             position: absolute;
             bottom: -20px;
             border-radius: 50%;
-            opacity: 0;
-            animation: floatUp 12s linear infinite;
-            filter: blur(1px);
-            box-shadow: 0 0 10px currentColor;
+            animation: sidebarFloatUp linear infinite;
         }
 
-        @keyframes floatUp {
-            0% {
-                transform: translateY(0) translateX(0) scale(0.5);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.6;
-            }
-            90% {
-                opacity: 0.6;
-            }
-            100% {
-                transform: translateY(-1120px) translateX(var(--drift)) scale(1.2);
-                opacity: 0;
-            }
+        @keyframes sidebarFloatUp {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(-1150px) translateX(50px); opacity: 0; }
         }
 
-        /* Sidebar Content Containers (Webcam & Info Boxes) */
-        .sidebar-content {
-            position: relative;
-            z-index: 3;
-            width: 100%;
-            height: 100%;
+        .sd1 { left: 10%; width: 6px; height: 6px; animation-duration: 4s; background: #00ffd5; box-shadow: 0 0 10px #00ffd5; }
+        .sd2 { left: 25%; width: 4px; height: 4px; animation-duration: 5.5s; animation-delay: 0.7s; background: #ff0077; box-shadow: 0 0 10px #ff0077; }
+        .sd3 { left: 45%; width: 8px; height: 8px; animation-duration: 3.5s; animation-delay: 1.5s; background: #9900ff; box-shadow: 0 0 10px #9900ff; }
+        .sd4 { left: 70%; width: 5px; height: 5px; animation-duration: 4.5s; animation-delay: 0.2s; background: #00ff66; box-shadow: 0 0 10px #00ff66; }
+        .sd5 { left: 85%; width: 7px; height: 7px; animation-duration: 6s; animation-delay: 2s; background: #00ffd5; box-shadow: 0 0 10px #00ffd5; }
+        .sd6 { left: 35%; width: 5px; height: 5px; animation-duration: 5s; animation-delay: 1s; background: #ff0077; box-shadow: 0 0 10px #ff0077; }
+        .sd7 { left: 60%; width: 9px; height: 9px; animation-duration: 3s; animation-delay: 2.7s; background: #9900ff; box-shadow: 0 0 10px #9900ff; }
+        .sd8 { left: 20%; width: 4px; height: 4px; animation-duration: 6.5s; animation-delay: 0.5s; background: #00ff66; box-shadow: 0 0 10px #00ff66; }
+        .sd9 { left: 75%; width: 6px; height: 6px; animation-duration: 4.2s; animation-delay: 1.2s; background: #ff0077; box-shadow: 0 0 10px #ff0077; }
+        .sd10 { left: 50%; width: 5px; height: 5px; animation-duration: 5.2s; animation-delay: 3s; background: #00ffd5; box-shadow: 0 0 10px #00ffd5; }
+        .sd11 { left: 90%; width: 7px; height: 7px; animation-duration: 3.7s; animation-delay: 0.9s; background: #00ff66; box-shadow: 0 0 10px #00ff66; }
+        .sd12 { left: 15%; width: 8px; height: 8px; animation-duration: 4.7s; animation-delay: 2.4s; background: #9900ff; box-shadow: 0 0 10px #9900ff; }
+
+        /* Left-Side Interface Panels */
+        .panel {
+            background: rgba(0, 5, 15, 0.75);
+            padding: 20px;
+            border-radius: 14px;
+            border: 1px solid rgba(0, 255, 213, 0.15);
+            border-left: 4px solid #00ffd5;
+            backdrop-filter: blur(12px);
+            z-index: 6;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+            animation: panelGlow 2s ease-in-out infinite alternate;
+            max-width: 400px;
+        }
+
+        @keyframes panelGlow {
+            0% { border-color: rgba(0, 255, 213, 0.15); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6); }
+            100% { border-color: rgba(255, 0, 119, 0.4); box-shadow: 0 8px 32px 0 rgba(255, 0, 119, 0.1); }
+        }
+
+        .webcam-container {
+            height: 220px;
+            margin-top: 60px;
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .box {
-            width: 100%;
-            background: rgba(0, 0, 0, 0.55);
-            border: 2px solid rgba(0, 255, 255, 0.2);
-            border-radius: 16px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-            transition: border-color 0.5s ease;
-        }
-
-        /* Top Box: Adjusted Aspect Ratio for Webcam / Chat */
-        .webcam-box {
-            height: 240px; 
-            display: flex;
-            align-items: center;
             justify-content: center;
-        }
-
-        /* Bottom Box: Stream Goals & Info */
-        .info-box {
-            height: 720px;
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+            align-items: center;
+            text-align: center;
         }
 
         .placeholder-text {
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 14px;
-            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 13px;
             letter-spacing: 2px;
-            font-weight: 600;
-            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .info-container {
+            height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .info-container h2 {
+            font-size: 16px;
+            color: #00ffd5;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .info-container p {
+            font-size: 13px;
+            color: #cbd5e1;
+            line-height: 1.4;
         }
     </style>
 </head>
 <body>
 
-    <div class="gameplay-container"></div>
-
-    <div class="sidebar">
-        <div class="particle-container" id="particleContainer"></div>
-
-        <div class="sidebar-content">
-            <div class="box webcam-box">
-                <div class="placeholder-text">Webcam / Chat Layer</div>
-            </div>
-
-            <div class="box info-box">
-                <div class="placeholder-text" style="text-align: left;">Stream Info</div>
-                </div>
+    <div class="gameplay-container">
+        <div class="ipad-screen-placeholder">
+            <div class="live-indicator">Live</div>
         </div>
     </div>
 
-    <script>
-        const container = document.getElementById('particleContainer');
-        const colors = [
-            '#00ffff', // Aqua
-            '#ff0055', // Red
-            '#00ff66', // Green
-            '#ff00aa', // Pink
-            '#b300ff', // Purple
-            '#3366ff'  // Blue
-        ];
+    <div class="sidebar">
+        
+        <div class="sidebar-wave-container">
+            <svg class="sidebar-wave-svg" viewBox="0 0 480 1180" preserveAspectRatio="none">
+                <path class="sidebar-base-track" d="M 120,0 Q 360,295 120,590 T 360,1180" />
+                <path class="sidebar-laser laser-1a" d="M 120,0 Q 360,295 120,590 T 360,1180" />
+                <path class="sidebar-laser laser-1b" d="M 120,0 Q 360,295 120,590 T 360,1180" />
+                
+                <path class="sidebar-base-track" d="M 360,0 Q 120,295 360,590 T 120,1180" />
+                <path class="sidebar-laser laser-2a" d="M 360,0 Q 120,295 360,590 T 120,1180" />
+                <path class="sidebar-laser laser-2b" d="M 360,0 Q 120,295 360,590 T 120,1180" />
+            </svg>
+        </div>
 
-        for (let i = 0; i < 24; i++) {
-            const dot = document.createElement('div');
-            dot.classList.add('dot');
-            
-            // Randomize size, positioning, and animations inside the 384px bounds
-            const size = Math.floor(Math.random() * 6) + 4; // 4px to 10px
-            const leftPos = Math.random() * 100;
-            const delay = Math.random() * 12;
-            const duration = Math.floor(Math.random() * 4) + 10; // 10s to 14s
-            const drift = (Math.random() * 60 - 30) + 'px'; // Soft drift
-            const color = colors[i % colors.length];
+        <div class="sidebar-particles">
+            <div class="sidebar-dot sd1"></div><div class="sidebar-dot sd2"></div><div class="sidebar-dot sd3"></div><div class="sidebar-dot sd4"></div>
+            <div class="sidebar-dot sd10"></div><div class="sidebar-dot sd6"></div><div class="sidebar-dot sd7"></div><div class="sidebar-dot sd8"></div>
+            <div class="sidebar-dot sd9"></div><div class="sidebar-dot sd5"></div><div class="sidebar-dot sd11"></div><div class="sidebar-dot sd12"></div>
+        </div>
+    </div>
 
-            dot.style.width = size + 'px';
-            dot.style.height = size + 'px';
-            dot.style.left = leftPos + '%';
-            dot.style.animationDelay = delay + 's';
-            dot.style.animationDuration = duration + 's';
-            dot.style.color = color;
-            dot.style.setProperty('--drift', drift);
-
-            container.appendChild(dot);
-        }
-    </script>
 </body>
 </html>
