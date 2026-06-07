@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stream Overlay - Cyber Matrix Animated Webcam Border</title>
+    <title>Stream Overlay - Cyber Matrix Transparent Webcam Border</title>
     <style>
         * {
             margin: 0;
@@ -27,10 +27,10 @@
             width: 480px;
             height: 270px;
             position: relative;
-            background: rgba(0, 5, 15, 0.75);
+            /* CHANGED: Base container background is now fully clear/transparent */
+            background: transparent; 
             border-radius: 12px;
             z-index: 1;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.85);
             overflow: hidden;
         }
 
@@ -38,13 +38,11 @@
         .webcam-panel::before {
             content: '';
             position: absolute;
-            /* Oversized pseudo-element ensures edges never clip or pull grey/empty space during rotation */
             top: -150px;
             left: -150px;
             right: -150px;
             bottom: -150px;
             
-            /* SYNCHRONIZED MULTI-COLOR GRADIENT STRIP TRACK */
             background: linear-gradient(270deg, 
                 #ff0055 0%, 
                 #9900ff 25%, 
@@ -53,25 +51,24 @@
                 #ff0055 100%
             );
             background-size: 300% 300%;
-            
-            /* Linear slide combined with full element rotation */
             animation: matrixFluidLoop 4s linear infinite;
             z-index: -2;
         }
 
         /* Inner Content Frame Mask forming a clean 4px border track width */
-        .webcam-panel::after {
-            content: '';
+        .webcam-mask-inner {
             position: absolute;
             top: 4px;      /* Border line thickness */
             left: 4px;     
             right: 4px;    
             bottom: 4px;   
+            /* CHANGED: Clear window allows underlying camera feed layer to pass through */
             background: transparent; 
             border-radius: 9px;
             z-index: -1;
             pointer-events: none;
-            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.8);
+            /* Keeps a nice inner shading trace on your camera edge for clean depth definition */
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6); 
         }
 
         /* Unified Fluid-Rotation Multi-Color Translation Loop */
@@ -97,12 +94,12 @@
             right: 4px;
             bottom: 4px;
             border-radius: 9px;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
-                        linear-gradient(90deg, rgba(0, 255, 213, 0.02), rgba(255, 0, 150, 0.01), rgba(0, 255, 102, 0.02));
-            background-size: 100% 4px, 6px 100%;
+            /* Lightened up line filters so they don't block your face capture */
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%);
+            background-size: 100% 4px;
             z-index: 2;
             pointer-events: none;
-            opacity: 0.7;
+            opacity: 0.4;
         }
 
         /* Outer Glow Contour System utilizing Cyber Cyan #00ffd5 styling */
@@ -144,27 +141,13 @@
         .top-right { top: 10px; right: 10px; border-left: none; border-bottom: none; }
         .bottom-left { bottom: 10px; left: 10px; border-right: none; border-top: none; }
         .bottom-right { bottom: 10px; right: 10px; border-left: none; border-top: none; }
-
-        /* UI Placement Text */
-        .placeholder-indicator {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: rgba(0, 255, 213, 0.3);
-            font-size: 11px;
-            font-weight: bold;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            pointer-events: none;
-            z-index: 0;
-            text-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
-        }
     </style>
 </head>
 <body>
 
     <div class="webcam-panel">
+        <div class="webcam-mask-inner"></div>
+
         <div class="bracket top-left"></div>
         <div class="bracket top-right"></div>
         <div class="bracket bottom-left"></div>
@@ -172,8 +155,6 @@
         
         <div class="scanlines"></div>
         <div class="glow-contour"></div>
-
-        <div class="placeholder-indicator">Webcam Source Container</div>
     </div>
 
 </body>
